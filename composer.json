@@ -1,0 +1,11 @@
+{
+    "name": "lesptitspouces/site",
+    "description": "site de vente",
+    
+    "autoload": {
+        "psr-4": {
+            "Oc\\":"src/"
+        }
+    },
+    "require": {}
+}
