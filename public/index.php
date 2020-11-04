@@ -1,19 +1,26 @@
 <?php
 declare(strict_types=1);
 
-require'../vendor/autoload.php';
+require '../vendor/autoload.php';
 
 use Oc\Controller\HomePageController;
+use Oc\Controller\ArticleController;
 
 session_start();
 
-switch ($_GET['action']){
-    case 'listearticle':
-        $controller = new ArticleController();
-        $controlelr->article('id');
+$whoops = new \Whoops\Run;
+$whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
+$whoops->register();
+
+$action = isset($_GET['action']) ? $_GET['action'] : null;
+
+switch ($action){
+    // case 'listearticle':
+    //     $controller = new ArticleController();
+    //     $controlelr->article((int)$_GET['id']);
+    // break;
 
     default:
-    $controller = new HomePageController();
-    $controller->homePage();
-    var_dump($controller);
+        $controller = new HomePageController();
+        $controller->homePage();
 }

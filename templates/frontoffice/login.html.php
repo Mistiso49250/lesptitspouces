@@ -2,18 +2,23 @@
     <div class="banniere">
         <h2>Se connecter</h2>
     </div>
-</div> 
+</div>
 
-<?php
-if($data['messageError'] !== null){
-    ?><div class="alert alert-danger"><?=$data['messageError']?></div><?php
-}
-?>
-    <!-- Afficher le formulaire de saisie du mot de passe -->
-    <h1 class="titleConnection">Veuillez saisir votre identifiant et le mot de passe pour accéder à la partie administrateur</h1>
-        <form class="formConnection" action="index.php?action=login" method="post">
-            <!-- action chemin redirection et method = methode d'envoie -->
-            <p><input type="text" name="utilisateur" placeholder="Utilisateur" /></p>
-            <p><input type="password" name="password" placeholder="Mot de passe"/></p>
-            <button class="btn btn-primary">Se connecter</button>
-        </form>
+
+<!-- Afficher le formulaire de saisie du mot de passe -->
+<h1 class="titleConnection">Veuillez saisir votre identifiant et le mot de passe pour vous connecter</h1>
+
+<form action="index.php?action=login" method="POST">
+    <div class="form-group">
+        <label for="">Pseudo ou email</label>
+        <input type="text" name="utilisateur" class="form-control" placeholder="Utilisateur" />
+    </div>
+
+    <div class="form-group">
+        <label for="">mot de passe<a href="forget.php">(J'ai oublié mon mot de passe</a></label>
+        <input type="password" name="password" class="form-control" placeholder="Mot de passe" />
+    </div>
+
+    <button class="btn btn-primary">Se connecter</button>
+
+</form>

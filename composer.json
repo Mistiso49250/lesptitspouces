@@ -1,11 +1,23 @@
 {
-    "name": "lesptitspouces/site",
-    "description": "site de vente",
-    
+    "name": "michael/lesptitspouces",
+    "description": "projet5",
+    "authors": [
+        {
+            "name": "michael",
+            "email": "made_in_51@hotmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Oc\\":"src/"
         }
     },
-    "require": {}
+    "require": {
+        "twig/twig": "^3.0",
+        "filp/whoops": "^2.9"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.16",
+        "phpstan/phpstan": "^0.12.53"
+    }
 }

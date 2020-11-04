@@ -12,11 +12,11 @@ class View
         $this->path = $path;
     }
 
-    public function render(string $templates, ?array $data): void
+    public function render(string $templates, ?array $data) : void
     {
         ob_start();
         require_once($this->path.$templates.'.html.php');
-        $contetn=ob_get_clean();
+        $content=ob_get_clean();
         require_once($this->path.'layout.html.php');
     }
 

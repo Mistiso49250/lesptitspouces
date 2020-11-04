@@ -17,4 +17,9 @@ class DbConnect {
             die('Erreur : '.$e->getMessage());
         }
     }
+
+    public function lastInsertId()
+    {
+        return $this->db->lastInsertId();
+    }
 }
