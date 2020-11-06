@@ -2,20 +2,19 @@
 
 namespace Oc\Tools;
 
+use PDO;
+
 class DbConnect {
     private $db;
 
     public function connectToDb()
     {
-        try
-        {
-            $this->db = new \PDO('mysql:host=localhost;dbname=lesptitspouces;charset=utf8', 'root', '');
-            return $this->db;
-        }
-        catch(Exception $e)
-        {
-            die('Erreur : '.$e->getMessage());
-        }
+       
+        $this->db = new \PDO('mysql:host=localhost;dbname=lesptitspouces;charset=utf8', 'root', '');
+        $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+        return $this->db;
+        
     }
 
     public function lastInsertId()

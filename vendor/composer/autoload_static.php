@@ -55,6 +55,10 @@ class ComposerStaticInit44b7e65a15b5fdb931e3ee7725de65d6
             'Psr\\Container\\' => 14,
             'PhpCsFixer\\' => 11,
         ),
+        'O' => 
+        array (
+            'Oc\\' => 3,
+        ),
         'D' => 
         array (
             'Doctrine\\Common\\Lexer\\' => 22,
@@ -159,6 +163,10 @@ class ComposerStaticInit44b7e65a15b5fdb931e3ee7725de65d6
         'PhpCsFixer\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofphp/php-cs-fixer/src',
+        ),
+        'Oc\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'Doctrine\\Common\\Lexer\\' => 
         array (

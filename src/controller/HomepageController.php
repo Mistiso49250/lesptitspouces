@@ -3,8 +3,9 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
-use Oc\view\Vieuw;
+use Oc\view\View;
 use Oc\model\AdminManager;
+use Oc\Tools\Session;
 use Oc\Model\HomePageManager;
 
 class HomePageController
@@ -20,8 +21,8 @@ class HomePageController
     {
         $this->view = new View('../templates/frontoffice/');
         $this->admiManager = new adminManager();
-        $this->session = $session;
-        $this->option = array_merge($this->options, [$options]);
+        $this->session = new Session;
+        // $this->option = array_merge($this->options, [$options]);
         $this->user_id = $_GET['id'];
         $this->token = $_GET['token'];
     }   
@@ -29,7 +30,7 @@ class HomePageController
     public function login()
     {
         if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])){
-            $user = $auth->login($_POST['username'], $_POST['password'], isset($_POST['remember']));
+            $user =$this->adminManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
             if($user){
                 $_SESSION['flash']['succes'] = 'vous etes maintenant connecté';
                 
