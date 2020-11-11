@@ -3,21 +3,28 @@ declare(strict_types=1);
 
 namespace Oc\View;
 
+use Twig\Environment;
+use twig\Loader\FilesystemLoader;
+
 class View
 {
-    private $path;
+    private $twig;
 
-    public function  __construct(string $path)
+    public function  __construct()
     {
-        $this->path = $path;
+        $loader = new FilesystemLoader( '../templates');
+        var_dump("loader", $loader); die();
+        $this->twig = new Environment($loader, [
+            'cache' => false
+        ]);
     }
 
     public function render(string $templates, ?array $data) : void
     {
-        ob_start();
-        require_once($this->path.$templates.'.html.php');
-        $content=ob_get_clean();
-        require_once($this->path.'layout.html.php');
+        echo $this->twig->render($templates . ".html.twig", $data);
+
     }
+
+
 
 }

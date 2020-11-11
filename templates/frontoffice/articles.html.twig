@@ -1,0 +1,30 @@
+{% block head %}
+<title>articles</title>
+{% endblock %}
+
+{% block content %}
+
+{% for article in data %}
+    <h2>{{ article.titre }}</h2>
+    <img src="{{ article.image }}" alt="" class="img-fluid">
+{% endfor %}
+
+<div class="infoProduit">
+        {% for article in data %}
+    <div class="titreArticle">
+        <h2>{{ article.titre }}</h2>
+        {{ article.contenu }}
+    </div>
+    <div class="prixArticle">
+        <span class="prix">{{ article.prix }} </span>
+    </div>
+    <div class="action">
+        {{ article.stock }}
+        {{ quantité }}
+        {{ prix total }}
+        <button type="submit" title="ajouter au panier"></button>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

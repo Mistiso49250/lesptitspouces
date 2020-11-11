@@ -1,18 +1,39 @@
-<?php ?>
+{% block head %}
+    <title>Les P'tits Pouces</title>
+{% endblock %}
 
-<div class="homeHeader">
-    <h2>Nouveautés</h2>
-</div>
+{% block content %}
+    <header class="slide" id="slide">
+            <div class="circleLeft">
+                <a id="circleLeft"><i class="fas fa-angle-left"></i></a>
+            </div>
+
+            <img src="images/map.png" id="sliderImage" alt="velo" />
+
+            <span id="timer"></span>
+            <button id="play">Play</button>
+
+            <div class="circleRight">
+                <a id="circleRight"><i class="fas fa-angle-right"></i></a>
+            </div>
+        </header>
+
+    <div class="homeHeader">
+        <h2>Nouveautés</h2>
+    </div>
 
 
-<?php foreach($data as $article): ?>
-<div class="container">
+
+    {% for newArticle in articles %}
     <section class="row">
-        <div class="col-xs-12 col-sm-4 col-md-3">
-            <a href="index.php?action=<?$article['id_article']?>">
-                <img src="images/<?$article['image']?>" alt=""></a>
+        <div class="col-xs">
+            <div class="card">
+                <a href="index.php?action={{ newArticle.id }}">
+                 <img src="images/{{ newArticle.image }}" alt=""></a>
+            </div>
         </div>
     </section>
+    {% endfor %}
 
     <section class="row">
         <div class="col-lg-offset-3 col-lg-6">
@@ -29,5 +50,16 @@
             <p>Nous vous souhaitons une agréable visite sur note site, à la découverte de cadeaux de qualité à offrir aux <em>loupiots</em> et leurs heureux parents  !</p>
         </div>
     </section>
-</div>
-<?php endforeach; ?>
+    
+    <secion class="row">
+        <div class="col-lg-10">
+            <h4>Nos marques</h4>
+            <div class="marquesSlider">
+                <img src="" id="marquesSliderImage" alt="marques" >
+                <span id="timerMarques"></span>
+            </div>
+        </div>
+    </secion>
+
+
+{% endblock %}

@@ -13,13 +13,9 @@ $whoops->pushHandler(new \Whoops\Handler\PrettyPageHandler);
 $whoops->register();
 
 // Routing
-$action = isset($_GET['action']) ? $_GET['action'] : null;
+$action = isset($_GET['action']) ? $_GET['action'] : "home";
+// var_dump("action", $action); die();
 
-// Rendu du template
-// $loader = new Twig_Loader_Filesystem(__DIR__ . '/templates');
-// $twig = new Twig_Environnement($loader, [
-//     'cache'=>false
-// ]);
 
 switch ($action){
     // case 'listearticle':
@@ -27,7 +23,8 @@ switch ($action){
     //     $controlelr->article((int)$_GET['id']);
     // break;
 
-    default:
+    case 'home':
         $controller = new HomePageController();
         $controller->homePage();
+    break;
 }

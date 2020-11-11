@@ -188,7 +188,6 @@ class ComposerStaticInit44b7e65a15b5fdb931e3ee7725de65d6
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
-        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PhpCsFixer\\Diff\\GeckoPackages\\DiffOutputBuilder\\ConfigurationException' => __DIR__ . '/..' . '/php-cs-fixer/diff/src/GeckoPackages/DiffOutputBuilder/ConfigurationException.php',
