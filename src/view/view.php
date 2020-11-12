@@ -22,7 +22,6 @@ class View
     public function render(string $templates, ?array $data) : void
     {
         echo $this->twig->render($templates . ".html.twig", $data);
-
     }
 
 

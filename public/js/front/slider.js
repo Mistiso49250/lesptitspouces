@@ -1,9 +1,7 @@
 class Slider {
-    constructor(tabImages, sliderImageId, tabTextes, sliderTexteId, play, timer) {
+    constructor(tabImages, sliderImageId, timer) {
         this.tabImages = tabImages;
         this.tagImageId = document.getElementById(sliderImageId);
-        // this.tabTextes = tabTextes;
-        // this.tagTexteId = document.getElementById(sliderTexteId);
         this.boutonId = document.getElementById(play);
         this.timerId = document.getElementById(timer);
         this.nextId = document.getElementById("circleRight");
@@ -68,11 +66,8 @@ class Slider {
             // Démarre le chronomètre : appelle suivant toutes les 5secondes
             this.intervalId = setInterval( () => this.next(), 5000);//permet de démarrer la lecture auto
             //.bind(valeur) permet de créer une fonction où this a la valeur voulue
-            this.boutonId.textContent = "Pause";// Modifie le texte du bouton
         }else {
             clearInterval(this.intervalId);// Arrêt du slide auto
-            this.boutonId.textContent = "Play";// Modifie le texte du bouton
-
         }
         // Inverse la valeur de l'état du chrono
         this.demarre = !this.demarre;
