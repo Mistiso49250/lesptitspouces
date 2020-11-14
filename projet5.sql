@@ -35,6 +35,7 @@ REPLACE INTO `admin` (`id&dmin`, `name`, `password`, `role`) VALUES
 CREATE TABLE IF NOT EXISTS `articles` (
   `id_articles` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
+  `extrait` varchar(255) NOT NULL,
   `contenu_article` text NOT NULL,
   `image` varchar(50) NOT NULL,
   `prix_UHT` varchar(255) NOT NULL,
@@ -81,6 +82,20 @@ CREATE TABLE IF NOT EXISTS `client` (
 -- Listage des données de la table lesptitspouces.client : ~0 rows (environ)
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
+
+-- Listage de la structure de la table lesptitspouces. newarticles
+CREATE TABLE IF NOT EXISTS `newarticles` (
+  `id_article` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(255) NOT NULL DEFAULT '0',
+  `extrait` varchar(255) NOT NULL DEFAULT '0',
+  `contenu` varchar(255) NOT NULL DEFAULT '0',
+  `image` varchar(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_article`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table lesptitspouces.newarticles : ~0 rows (environ)
+/*!40000 ALTER TABLE `newarticles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `newarticles` ENABLE KEYS */;
 
 -- Listage de la structure de la table lesptitspouces. slider
 CREATE TABLE IF NOT EXISTS `slider` (

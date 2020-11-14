@@ -17,14 +17,21 @@ $action = isset($_GET['action']) ? $_GET['action'] : "home";
 // var_dump("action", $action); die();
 
 
-switch ($action){
-    // case 'listearticle':
-    //     $controller = new ArticleController();
-    //     $controlelr->article((int)$_GET['id']);
-    // break;
-
-    case 'home':
-        $controller = new HomePageController();
-        $controller->homePage();
+switch ($action){// partie front
+    // affichage des articles
+    case 'article':
+        $controller = new ArticleController();
+        $controller->article((int)$_GET['id']);
     break;
+    // affichage des nouveaux article
+    case 'newArticle':
+        $controller = new ArticleController();
+        $controller->newArticle((int)$_GET['id']);
+    break;
+
+
+    // page d'accueil
+    default:
+    $controller = new HomePageController();
+    $controller->homePage();
 }

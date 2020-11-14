@@ -1,0 +1,51 @@
+{% block head %}
+    <title>Cadeaux Naissance</title>
+{% endblock %}
+
+{% block content %}
+
+    <section class="row justify-content-nm-center container-fluid mt-4">
+        <div class="col-12">
+            <h4>Nos rayon</h4>
+            <a href="index.php?action=doudou" class="title">Doudous</a>
+            <a href="index.php?action=peluche" class="title">Peluches</a>
+            <a href="index.php?action=album" class="title">Albums Photos</a>
+            <a href="index.php?action=carnetdesante" class="title">Protèges carnet de santé</a>
+            <a href="index.php?action=boitemamusique" class="title">Boites à musique</a>
+            <a href="index.php?action=dentition" class="title">Dentition</a>
+            <a href="index.php?action=hochet" class="title">Hochets</a>
+            <a href="index.php?action=mobile" class="title">Mobiles</a>
+        </div>
+        {# </section> #}
+
+        {% for article in articles %}
+        {# <section class="row"> #}
+            <div class="col-xs">
+                <div class="card">
+                    <img src="images/{{ article.image }}" alt="" class="cardImg"></a>
+                    <div class="cardBlock">
+                        <h4 class="cardTitle">{{ article.titre }} </h4>
+                        <a href="index.php?action={{ article.id_article }}">
+                        <p class="cardArticleText">{{ article.extrait | nl2br }}</p>
+                        <p class="cardPrice">{{ article.prix }}</p>
+                        <a class="btn btn-info btn-rouded mb-4" href="">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+    {% endfor %}
+
+    {# Pagination #}
+    <div class="d-flex justify-content-between my4">
+        {% if data.pagePrecedente !==0 %}
+            <a href="index.php?action=cadeauxnaissance&page={{ data.pagePrecedente }}" class="btn btn-info m-3">&laquo;
+            Page
+            précédente</a>
+        {% endif %}
+        {% if data.pageSuivante %}
+            <a href="index.php?action=cadeauxnaissance&page={{ data.pageSuivante }}" class="btn btn-info ml-auto m-3">Page
+            suivante &raquo;</a>
+        {% endif %}
+    </div>
+
+{% endblock %}
