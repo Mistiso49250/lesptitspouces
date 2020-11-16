@@ -33,13 +33,13 @@ REPLACE INTO `admin` (`id&dmin`, `name`, `password`, `role`) VALUES
 
 -- Listage de la structure de la table lesptitspouces. articles
 CREATE TABLE IF NOT EXISTS `articles` (
-  `id_articles` int(11) NOT NULL AUTO_INCREMENT,
+  `id_article` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `extrait` varchar(255) NOT NULL,
   `contenu_article` text NOT NULL,
   `image` varchar(50) NOT NULL,
   `prix_UHT` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_articles`)
+  PRIMARY KEY (`id_article`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table lesptitspouces.articles : ~0 rows (environ)
@@ -83,6 +83,20 @@ CREATE TABLE IF NOT EXISTS `client` (
 /*!40000 ALTER TABLE `client` DISABLE KEYS */;
 /*!40000 ALTER TABLE `client` ENABLE KEYS */;
 
+-- Listage de la structure de la table lesptitspouces. marques
+CREATE TABLE IF NOT EXISTS `marques` (
+  `id_marque` int(11) NOT NULL AUTO_INCREMENT,
+  `titre` varchar(255) NOT NULL DEFAULT '0',
+  `id_article` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id_marque`),
+  KEY `idArticle` (`id_article`),
+  CONSTRAINT `idArticle` FOREIGN KEY (`id_article`) REFERENCES `articles` (`id_article`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table lesptitspouces.marques : ~0 rows (environ)
+/*!40000 ALTER TABLE `marques` DISABLE KEYS */;
+/*!40000 ALTER TABLE `marques` ENABLE KEYS */;
+
 -- Listage de la structure de la table lesptitspouces. newarticles
 CREATE TABLE IF NOT EXISTS `newarticles` (
   `id_article` int(11) NOT NULL AUTO_INCREMENT,
@@ -90,6 +104,7 @@ CREATE TABLE IF NOT EXISTS `newarticles` (
   `extrait` varchar(255) NOT NULL DEFAULT '0',
   `contenu` varchar(255) NOT NULL DEFAULT '0',
   `image` varchar(50) NOT NULL DEFAULT '0',
+  `prix` int(11) DEFAULT NULL,
   PRIMARY KEY (`id_article`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
