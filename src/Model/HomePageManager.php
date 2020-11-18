@@ -14,13 +14,14 @@ class HomePageManager
         $this->db = (new DbConnect())->connectToDb();
     }
 
-    public function user(): ?user
+    public function user()
+    // : ? user
     {
-        if(session_status() === PHP_SESSION_NONE){
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         $id = $_SESSION['auth'] ?? null;// ??null => si pas défini = null
-        if($id === null){
+        if ($id === null) {
             return null;
         }
         $req = $this->db->prepare('SELECT * from client where id = :id');
@@ -30,19 +31,20 @@ class HomePageManager
         return $user ?: null;
     }
 
-    public function auth($username, $password): ?user
+    public function auth($username, $password) 
+    // : ?user
     {
         // cherche l'utilisateur correspondant au username
         $req = $this->db->prepare('SELECT * from client where username = :username');
         $req->execute(['username'=> $username]);
         $user = $req->fetch();
-        if ($user === false){
+        if ($user === false) {
             return null;
         }
         // on verifie si le mot de passe correspond
-        if(password_verify($password, $user->password)){
+        if (password_verify($password, $user->password)) {
             // on verifie si la session es déjé active, sinon on la lance
-            if(session_status() === PHP_SESSION_NONE){
+            if (session_status() === PHP_SESSION_NONE) {
                 session_start();
             }
             $_SESSION['auth'] = $user->id;

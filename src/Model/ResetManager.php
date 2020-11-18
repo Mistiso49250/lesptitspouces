@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Oc\Model;
 
-use Oc\Tools\DbConnect;
 use Oc\Model\HomePageManager;
+use Oc\Tools\DbConnect;
 
 class ResetManager
 {

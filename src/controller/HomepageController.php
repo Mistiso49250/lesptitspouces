@@ -3,10 +3,10 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
-use Oc\view\View;
-use Oc\model\AdminManager;
-use Oc\Tools\Session;
+use Oc\Model\AdminManager;
 use Oc\Model\HomePageManager;
+use Oc\Tools\Session;
+use Oc\View\View;
 
 class HomePageController
 {
@@ -15,34 +15,32 @@ class HomePageController
     private $homePageManager;
     private $session;
 
-    public function _construct()
+    public function __construct()
     {
         $this->view = new View();
-        var_dump("hompePageController", $this->view); die();
         $this->session = new Session();
         $this->homePageManager = new HomePageManager();
-    }   
+    }
 
-    public function login()
+    public function login(): void
     {
-        if($this->homePageManager->user() !== null){
+        if ($this->homePageManager->user() !== null) {
             header('Location: index.php');
             exit();
         }
-        if(!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])){
-            $user =$this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
-            if($user){
-               $this->session->setFlash('succes', 'vous etes maintenant connecté');
+        if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])) {
+            $user = $this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
+            if ($user) {
+                $this->session->setFlash('succes', 'vous etes maintenant connecté');
                 
                 header('Location: index.php?login=1');
                 exit();
-            }else {
-               $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
             }
+            $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
         }
     }
 
-    public function logout()
+    public function logout(): void
     {
         $this->session->logout();
         header('Location: index.php');
@@ -50,9 +48,8 @@ class HomePageController
     }
 
    
-    public function homePage()
+    public function homePage(): void
     {
-        var_dump($this->view); die();
-        $this->view->render('homePage', null);
+        $this->view->render('frontoffice/homePage', null);
     }
 }

@@ -5,8 +5,7 @@ namespace Oc\Model;
 
 use Oc\Tools\DbConnect;
 
-
-Class AdminManager
+class AdminManager
 {
     private $db;
 
@@ -15,16 +14,16 @@ Class AdminManager
         $this->db = (new DbConnect())->connectToDb();
     }
 
-    public function user() : ?user
-    {
-        $query = $this->db->prepare('SELECT * FROM user WHERE id = :iduser');
-        $query->execute([$id]);
-        $user = $query->fetch();
-        if(!$this->session->read['auth']){
-            return false;
-        }
-        return !$this->session->read['auth'];
-    }
+    // public function user() : ?user
+    // {
+    //     $query = $this->db->prepare('SELECT * FROM user WHERE id = :iduser');
+    //     $query->execute([$id]);
+    //     $user = $query->fetch();
+    //     if (!$this->session->read['auth']) {
+    //         return false;
+    //     }
+    //     return !$this->session->read['auth'];
+    // }
 
     public function auth(string $name): ?array
     {
@@ -33,10 +32,8 @@ Class AdminManager
         $user = $req->fetch();
 
         if ($user === false) {
-
             return null;
         }
         return $user;
-        
     }
 }

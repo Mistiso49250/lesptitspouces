@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 require '../vendor/autoload.php';
@@ -17,21 +18,21 @@ $action = isset($_GET['action']) ? $_GET['action'] : "home";
 // var_dump("action", $action); die();
 
 
-switch ($action){// partie front
-    // affichage des articles
+switch ($action) { // partie front
+        // affichage des articles
     case 'article':
         $controller = new ArticleController();
         $controller->article((int)$_GET['id']);
-    break;
-    // affichage des nouveaux article
+        break;
+        // affichage des nouveaux article
     case 'newArticle':
         $controller = new ArticleController();
         $controller->newArticle((int)$_GET['id']);
-    break;
+        break;
 
 
-    // page d'accueil
+        // page d'accueil
     default:
-    $controller = new HomePageController();
-    $controller->homePage();
+        $controller = new HomePageController();
+        $controller->homePage();
 }

@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
-use Oc\View\View;
 use Oc\Model\AdminManager;
 use Oc\Model\ArticleManager;
+use Oc\View\View;
 
 class ArticleController
 {
@@ -38,5 +38,4 @@ class ArticleController
             'article'=>$newArticle
         ]);
     }
-
 }

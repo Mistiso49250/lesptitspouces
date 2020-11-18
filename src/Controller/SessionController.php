@@ -34,5 +34,4 @@ class session
     // public function delete($key){
     //     unset($_SESSION[$key]);
     // }
-
 }

@@ -33,6 +33,4 @@ class ArticleManager
 
         return $articles === false ? null : $articles;
     }
-
-
 }

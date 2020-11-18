@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Oc\Model; 
+namespace Oc\Model;
 
-use Oc\Tools\DbConnect;
 use Oc\Model\HomePageManager;
+use Oc\Tools\DbConnect;
 
 class RegisterManager
 {
@@ -48,5 +48,4 @@ class RegisterManager
     //     $this->validation->isConfirmed('password', "Vous devez rentrer un mot de passe valide");
         
     // }
-    
 }
