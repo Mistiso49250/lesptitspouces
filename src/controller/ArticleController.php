@@ -15,7 +15,7 @@ class ArticleController
 
     public function __construct()
     {
-        $this->view = new View();
+        $this->view = new View('../templates/frontoffice/');
         $this->articleManager = new ArticleManager();
     }
 
@@ -30,12 +30,12 @@ class ArticleController
     }
 
     // affiche les informations d'un nouvel article
-    public function newArticle(int $idArticle) : void
+    public function newArticle(int $idNewArticle) : void
     {
-        $newArticle = $this->articleManager->findNewArticle($idArticle);
+        $newArticle = $this->articleManager->findNewArticle($idNewArticle);
 
-        $this->view->render('newArticle', [
-            'article'=>$newArticle
+        $this->view->render('frontoffice/newArticle', [
+            'newArticle'=>$newArticle
         ]);
     }
 }
