@@ -1,0 +1,61 @@
+{% block head %}
+    <title>Mobiliers & décorations</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="titrePage">
+        <h1>Mobiliers & décorations</h1>
+    </div>
+
+    <section class="row justify-content-nm-center container-fluid mt-4">
+        <div class="col-12">
+            <h4>Nos rayon</h4>
+            <a href="index.php?action=manuelle" class="title">Activités manuelles</a>
+            <a href="index.php?action=chariotsMarche" class="title">Chariots de marche</a>
+            <a href="index.php?action=chevalBascule" class="title">Chevals à bascule</a>
+            <a href="index.php?action=construction" class="title">Constructions</a>
+            <a href="index.php?action=figurines" class="title">Figurines</a>
+            <a href="index.php?action=educatif" class="title">Jeux éducatif</a>
+            <a href="index.php?action=exterieur" class="title">Jeux d'extérieur</a>
+            <a href="index.php?action=societe" class="title">Jeux de société</a>
+            <a href="index.php?action=jouetBain" class="title">Jouets de bain</a>
+            <a href="index.php?action=jouetSuspendre" class="title">Jouets à susprendre</a>
+            <a href="index.php?action=jouetTirer" class="title">Jouets à tirer</a>
+            <a href="index.php?action=porteur" class="title">Porteurs</a>
+            <a href="index.php?action=poupee" class="title">Poupées</a>
+            <a href="index.php?action=puzzles" class="title">Puzzles</a>
+        </div>
+        {# </section> #}
+
+        {% for article in articles %}
+        {# <section class="row"> #}
+            <div class="col-xs">
+                <div class="card">
+                    <img src="images/{{ article.image }}" alt="" class="cardImg"></a>
+                    <div class="cardBlock">
+                        <h4 class="cardTitle">{{ article.titre }} </h4>
+                        <a href="index.php?action={{ article.id_article }}">
+                        <p class="cardArticleText">{{ article.extrait | nl2br }}</p>
+                        <p class="cardPrice">{{ article.prix }}</p>
+                        <a class="btn btn-info btn-rouded mb-4" href="">Ajouter au panier</a>
+                    </div>
+                </div>
+            </div>
+    </section>
+    {% endfor %}
+
+    {# Pagination #}
+    <div class="d-flex justify-content-between my4">
+        {% if data.pagePrecedente !==0 %}
+            <a href="index.php?action=cadeauxnaissance&page={{ data.pagePrecedente }}" class="btn btn-info m-3">&laquo;
+            Page
+            précédente</a>
+        {% endif %}
+        {% if data.pageSuivante %}
+            <a href="index.php?action=cadeauxnaissance&page={{ data.pageSuivante }}" class="btn btn-info ml-auto m-3">Page
+            suivante &raquo;</a>
+        {% endif %}
+    </div>
+
+{% endblock %}

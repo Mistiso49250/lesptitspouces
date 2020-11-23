@@ -99,7 +99,39 @@ header p
     background-color: rgba(1, 106, 176, 0.548);
 }
 
+/* Card */
+.card {
+    font-weight: 400;
+    border: 0;
+    -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+}
 
+.cardImg{
+    width: 100%;
+}
+
+.cardImgCadeau{
+    vertical-align: middle;
+    border-style: none;
+}
+
+.cardBlock{
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.cardTitle{
+    margin-bottom: .75rem;
+}
+
+.cardArticleText{
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: .9rem;
+    font-weight: 400;
+    color: #747373;
+}
 
 /* Menu */
 .dropdown:hover .dropdown-menu {
