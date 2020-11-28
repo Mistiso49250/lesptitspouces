@@ -7,10 +7,19 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
         integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,700,700i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+
+    <!--<link rel="stylesheet" href="style.css"> -->
 
     <!-- bootstrap -->
-    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js">
+
 
     <!-- meta facebook -->
     <meta property="og:title" content="Les P'tits Pouces" />
@@ -24,100 +33,42 @@
 </head>
 
 <body>
-    <div class="siteContainer">
-        <div class="sitePusher">
-            <section class="burger">
-                <a href="#" class="burgerIcon" id="burgerIcon"></a>
-                <ul class="menu">
-                    <li><a href="index.php">Pour bébé</a>
-                        
-                            <li><a href="">Jouets premier age</li>
-                            <li><a href="">Doudous</li>
-                            <li><a href="">Peluches</li>
-                            <li><a href="">Les musicaux</li>
-                        </ul>
-                    </li>
-                    <li><a href="">Puzzles et jouets a empiler</a></li>
-                    <li><a href="">jouer et apprendre</a></li>
-                    <li><a href="">Jeux de société</a></li>
-                    <li><a href="">Construction</a></li>
-                    <li><a href="">Jeux d'imitation</a></li>
-                    <li><a href="">Plain air</a></li>
-                    <li><a href="">Décoration</a>
-                        <ul>
-                            <li><a href=""></a>Décoration de chambre
-                                <ul>
-                                    <li><a href=""></a>Luminaires et veilleuses</li>
-                                    <li><a href=""></a>Tableaux</li>
-                                    <li><a href=""></a>Toises</li>
-                                    <li><a href=""></a>Mobiles</li>
-                                    <li><a href=""></a>Fauteuils</li>
-                                </ul>
-                            </li>
-                            <li><a href=""></a>Accessoire décoration
-                                <ul>
-                                    <li><a href=""></a>Boîte a dents de lait</li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href=""></a>Par Age
-                        <ul>
-                            <li><a href=""></a>Naissance</li>
-                            <li><a href=""></a>1 - 3 ans</li>
-                            <li><a href=""></a>4 - 7 ans</li>
-                            <li><a href=""></a>8 ans et +</li>
-                        </ul>
-                    </li>
-                    <li><a href=""></a>Par marque
-                        <ul>
-                            <li><a href=""></a>Moulin Roty</li>
-                            <li><a href=""></a>Lilliputiens</li>
-                            <li><a href=""></a>Janod</li>
-                            <li><a href=""></a>Haba</li>
-                            <li><a href=""></a>Djeco</li>
-                            <li><a href=""></a>Kaloo</li>
-                            <li><a href=""></a>Mimi Bergamote</li>
-                            <li><a href=""></a>Corolle</li>
-                            <li><a href=""></a>Vilac</li>
-                        </ul>
-                    </li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-                    <li><a href="index.php?action=admin">Admin</a></li>
-                </ul>
-            </section>
-
-            <form role="search">
-                <div>
-                    <input type="search" id="maRecherche" name="q" placeholder="Rechercher sur le site…"
-                        aria-label="Rechercher parmi le contenu du site" size="30" minlength="4" maxlength="12" pattern="[A-Za-z\é\è\ê\-\¨]">
-                    <button>Rechercher</button>
-                    <span class="validity"></span>
-                </div>
-            </form>
-
-            <header class="slide">
-                <div class="circLeleft">
-                    <a id="circLeleft"><i class="fas fa-angle-left"></i></a>
-                </div>
-
-                <img src="public/images/" alt="">
-                <span id="timer"></span>
-                <button id="play">Play</button>
-
-                <div class="circleRight">
-                    <a id="circleRight"><i class="fas fa-angle-right"></i></a>
-                </div>
-            </header>
-
-            <div class="siteContent">
-                <div class="container">
-                    <?= $content ?>
-                </div>
-            </div>
-            <div class="siteCache" id="siteCache"></div>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
         </div>
-    </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+
 </body>
 
 <footer>
@@ -240,6 +191,15 @@
     </div>
 </footer>
 
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+    </script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+    </script>
 </html>
 
 

@@ -31,7 +31,7 @@ class HomePageManager
         return $user ?: null;
     }
 
-    public function auth($username, $password) 
+    public function auth($username, $password)
     // : ?user
     {
         // cherche l'utilisateur correspondant au username

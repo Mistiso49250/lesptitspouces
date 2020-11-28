@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
-use Oc\Model\AdminManager;
+use Oc\Model\ArticleManager;
 use Oc\Model\HomePageManager;
 use Oc\Tools\Session;
 use Oc\View\View;
@@ -11,7 +11,7 @@ use Oc\View\View;
 class HomePageController
 {
     private $view;
-    private $adminManager;
+    private $articleManager;
     private $homePageManager;
     private $session;
 
@@ -20,25 +20,26 @@ class HomePageController
         $this->view = new View('../templates/frontoffice/');
         $this->session = new Session();
         $this->homePageManager = new HomePageManager();
+        $this->articleManager = new ArticleManager();
     }
 
-    public function login(): void
-    {
-        if ($this->homePageManager->user() !== null) {
-            header('Location: index.php');
-            exit();
-        }
-        if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])) {
-            $user = $this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
-            if ($user) {
-                $this->session->setFlash('succes', 'vous etes maintenant connecté');
+    // public function login(): void
+    // {
+    //     if ($this->homePageManager->user() !== null) {
+    //         header('Location: index.php');
+    //         exit();
+    //     }
+    //     if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])) {
+    //         $user = $this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
+    //         if ($user) {
+    //             $this->session->setFlash('succes', 'vous etes maintenant connecté');
                 
-                header('Location: index.php?login=1');
-                exit();
-            }
-            $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
-        }
-    }
+    //             header('Location: index.php?login=1');
+    //             exit();
+    //         }
+    //         $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
+    //     }
+    // }
 
     public function logout(): void
     {
@@ -50,6 +51,10 @@ class HomePageController
    
     public function homePage(): void
     {
-        $this->view->render('frontoffice/homePage', null);
+        $list = $this->articleManager->findAllNouveaute();
+ 
+        $this->view->render('frontoffice/homePage', [
+            'list'=>$list
+        ]);
     }
 }

@@ -107,10 +107,6 @@ header p
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 }
 
-.cardImg{
-    width: 100%;
-}
-
 .cardImgCadeau{
     vertical-align: middle;
     border-style: none;
@@ -133,11 +129,34 @@ header p
     color: #747373;
 }
 
+.cardPrice{
+    color: blueviolet;
+}
+
+#panier{
+    padding: 13px;
+}
+
 /* Menu */
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
+.my-0{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.navbar form .md-form input {
+    margin: 0 5px 1px 8px;
+}
+
+.md-form input{
+    border-bottom: 1px solid #fff;
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
 
 /* Footer */
 

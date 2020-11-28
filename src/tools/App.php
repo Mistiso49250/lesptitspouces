@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace Oc\Tools;
 
-use Oc\Tools\DbConnect;
-
 class App
 {
     private $id_article;
@@ -16,8 +14,7 @@ class App
 
     public function __construct()
     {
-        $this->id_article = ;
-        
+        // $this->id_article = ;
     }
 
     public function getId()
@@ -61,4 +58,13 @@ class App
         return $this;
     }
 
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getPrix()
+    {
+        return $this->prix;
+    }
 }
