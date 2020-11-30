@@ -23,23 +23,24 @@ class HomePageController
         $this->articleManager = new ArticleManager();
     }
 
-    // public function login(): void
-    // {
-    //     if ($this->homePageManager->user() !== null) {
-    //         header('Location: index.php');
-    //         exit();
-    //     }
-    //     if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])) {
-    //         $user = $this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
-    //         if ($user) {
-    //             $this->session->setFlash('succes', 'vous etes maintenant connecté');
+    public function login(): void
+    {
+        if ($this->homePageManager->user() !== null) {
+            header('Location: index.php');
+            exit();
+        }
+        if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])) {
+            $user = $this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
+            if ($user) {
+                $this->session->setFlash('succes', 'vous etes maintenant connecté');
                 
-    //             header('Location: index.php?login=1');
-    //             exit();
-    //         }
-    //         $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
-    //     }
-    // }
+                header('Location: index.php?login=1');
+                exit();
+            }
+            $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
+        }
+    }
+
 
     public function logout(): void
     {
@@ -47,6 +48,27 @@ class HomePageController
         header('Location: index.php');
         exit();
     }
+
+    public function forget(): void
+    {
+        $this->view->render('frontoffice/forget', null);
+    }
+
+    public function register(): void
+    {
+        $this->view->render('frontoffice/register', null);
+    }
+
+    public function account(): void
+    {
+        $this->view->render('frontoffice/account', null);
+    }
+
+    public function reset(): void
+    {
+        $this->view->render('frontoffice/reset', null);
+    }
+
 
    
     public function homePage(): void

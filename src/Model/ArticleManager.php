@@ -18,7 +18,7 @@ class ArticleManager
     public function findArticle(int $idArticle) : ?array
     {
         $req = $this->db->prepare('SELECT * from articles where id_article = :idarticle');
-        $req->execute(['idarticles'=>$idArticle]);
+        $req->execute(['idarticle'=>$idArticle]);
         $articles = $req->fetch();
 
         return $articles === false ? null : $articles;

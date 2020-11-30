@@ -29,7 +29,29 @@ switch ($action) { // partie front
         $controller = new ArticleController();
         $controller->newArticle((int)$_GET['id']);
         break;
+    
+    case 'forget':
+        $controller = new HomePageController();
+        $controller->forget();
+    break;
+    case 'register':
+        $controller = new HomePageController();
+        $controller->register();
+    break;
+    case 'account':
+        $controller = new HomePageController();
+        $controller->account();
+    break;
+    case 'reset':
+        $controller = new HomePageController();
+        $controller->reset();
+    break;
 
+    // connexion à la partie admin
+    case 'login':
+        $controller = new HomePageController();
+        $controller->login();
+    break;
 
         // page d'accueil
     default:

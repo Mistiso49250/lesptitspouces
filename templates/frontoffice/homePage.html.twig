@@ -6,18 +6,15 @@
 
 {% block content %}
     <header class="slide" id="slide">
-            <div class="circleLeft">
-                <a id="circleLeft"><i class="fas fa-angle-left"></i></a>
-            </div>
-
-            <img src="" id="sliderImage" alt="velo" />
-
-            <span id="timer"></span>
-
-            <div class="circleRight">
-                <a id="circleRight"><i class="fas fa-angle-right"></i></a>
-            </div>
-        </header>
+        <div class="circleLeft">
+            <a id="circleLeft"><i class="fas fa-angle-left"></i></a>
+        </div>
+        <img src="" id="sliderImage" alt="velo" />
+        <span id="timer"></span>
+        <div class="circleRight">
+            <a id="circleRight"><i class="fas fa-angle-right"></i></a>
+        </div>
+    </header>
 
     <div class="homeHeader">
         <h2>Nouveautés</h2>
@@ -27,7 +24,7 @@
         {% for article in list %}
             <div class="col-md-3 mb-4">
                     <div class="card text-center h-100" style="width: 15rem;">
-                        <a href="index.php?action={{ article.id_article }}">
+                        <a href="index.php?action=newArticle&id={{ article.id_article }}">
                         <img src="images/{{ article.image }}" alt="" class="cardImgTop"></a>
                         <div class="cardBlock">
                             <h4 class="cardTitle">{{ article.titre }} </h4>

@@ -1,3 +1,5 @@
+{% extends "/frontoffice/layout.html.twig" %}
+
 {% block head %}
     <title>Doudous</title>
 {% endblock %}
@@ -8,21 +10,22 @@
         <h1>Doudous</h1>
     </div>
 
-    {% for article in articles %}
-    <section class="row">
-        <div class="col-xs">
-            <div class="card">
-                <img src="images/{{ article.image }}" alt="" class="cardImg"></a>
-                <div class="cardBlock">
-                    <h4 class="cardTitle">{{ article.titre }} </h4>
-                    <a href="index.php?action={{ article.id_article }}">
-                    <p class="cardArticleText">{{ article.extrait | nl2br }}</p>
-                    <p class="cardPrice">{{ article.prix }}</p>
-                    <a class="btn btn-info btn-rouded mb-4" href="">Ajouter au panier</a>
-                </div>
+    <div class="container-fluid row mb-4">
+        {% for article in list %}
+            <div class="col-md-3 mb-4">
+                    <div class="card text-center h-100" style="width: 15rem;">
+                        <a href="index.php?action=newArticle&id={{ article.id_article }}">
+                        <img src="images/{{ article.image }}" alt="" class="cardImgTop"></a>
+                        <div class="cardBlock">
+                            <h4 class="cardTitle">{{ article.titre }} </h4>
+                            <p class="cardArticleText">{{ article.extrait | nl2br }}</p>
+                            <p class="cardPrice">{{ article.prix }} €</p>
+                            <a class="btn btn-info btn-rouded mb-4" href="">Ajouter au panier</a>
+                        </div>
+                    </div>
             </div>
-        </div>
-    {% endfor %}
+        {% endfor %}
+    </div>
 
     {# Pagination #}
     <div class="d-flex justify-content-between my4">

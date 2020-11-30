@@ -31,7 +31,7 @@ class HomePageManager
         return $user ?: null;
     }
 
-    public function auth($username, $password)
+    public function auth($username)
     // : ?user
     {
         // cherche l'utilisateur correspondant au username
@@ -41,15 +41,5 @@ class HomePageManager
         if ($user === false) {
             return null;
         }
-        // on verifie si le mot de passe correspond
-        if (password_verify($password, $user->password)) {
-            // on verifie si la session es déjé active, sinon on la lance
-            if (session_status() === PHP_SESSION_NONE) {
-                session_start();
-            }
-            $_SESSION['auth'] = $user->id;
-            return $user;
-        }
-        return null;
     }
 }

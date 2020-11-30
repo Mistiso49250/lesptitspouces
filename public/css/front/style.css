@@ -172,6 +172,15 @@ header p
     border-radius: 0;
 }
 
+.contentLogin, .contentAccount, .contentRegister, .contentReset{
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+
+.contentLogin h4, .contentAccount h4, .contentRegister h4, .contentReset h4{
+    margin-bottom: 5%;
+}
+
 
 @media only screen and (min-width: 601px){
   
