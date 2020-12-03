@@ -146,6 +146,10 @@ header p
     color: #fff;
 }
 
+.special-color {
+    background-color: #1A237E !important;
+}
+
 .my-0{
     margin-top: 0;
     margin-bottom: 0;
@@ -172,12 +176,12 @@ header p
     border-radius: 0;
 }
 
-.contentLogin, .contentAccount, .contentRegister, .contentReset{
+.contentLogin, .contentAccount, .contentRegister, .contentReset, .contentForget{
     margin-bottom: 5%;
     margin-top: 5%;
 }
 
-.contentLogin h4, .contentAccount h4, .contentRegister h4, .contentReset h4{
+.contentLogin h4, .contentAccount h4, .contentRegister h4, .contentReset h4, .contentForget h4{
     margin-bottom: 5%;
 }
 

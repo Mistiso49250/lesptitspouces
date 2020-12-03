@@ -5,6 +5,8 @@ namespace Oc\Tools;
 
 class Session
 {
+    private $_SESSION;
+
     public function __construct()
     {
         if (session_status() === PHP_SESSION_NONE) {

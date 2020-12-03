@@ -36,14 +36,19 @@ CREATE TABLE IF NOT EXISTS `articles` (
   `id_article` int(11) NOT NULL AUTO_INCREMENT,
   `titre` varchar(255) NOT NULL,
   `extrait` varchar(255) NOT NULL,
-  `contenu_article` text NOT NULL,
+  `contenu_article` longtext NOT NULL,
   `image` varchar(50) NOT NULL,
-  `prix_UHT` varchar(255) NOT NULL,
-  PRIMARY KEY (`id_article`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `prixTTC` decimal(10,0) NOT NULL,
+  `prixHT` decimal(10,0) NOT NULL,
+  `newarticle` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id_article`),
+  KEY `prix` (`prixTTC`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table lesptitspouces.articles : ~0 rows (environ)
+-- Listage des données de la table lesptitspouces.articles : ~1 rows (environ)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
+REPLACE INTO `articles` (`id_article`, `titre`, `extrait`, `contenu_article`, `image`, `prixTTC`, `prixHT`, `newarticle`) VALUES
+	(1, 'poule', 'poule', 'poule', 'pixie\\Poule-Poule.jpg', 15, 0, 1);
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 
 -- Listage de la structure de la table lesptitspouces. bannieres
@@ -56,6 +61,21 @@ CREATE TABLE IF NOT EXISTS `bannieres` (
 -- Listage des données de la table lesptitspouces.bannieres : ~0 rows (environ)
 /*!40000 ALTER TABLE `bannieres` DISABLE KEYS */;
 /*!40000 ALTER TABLE `bannieres` ENABLE KEYS */;
+
+-- Listage de la structure de la table lesptitspouces. categorie
+CREATE TABLE IF NOT EXISTS `categorie` (
+  `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(50) DEFAULT NULL,
+  `description` text NOT NULL,
+  PRIMARY KEY (`id_categorie`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+-- Listage des données de la table lesptitspouces.categorie : ~2 rows (environ)
+/*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
+REPLACE INTO `categorie` (`id_categorie`, `code`, `description`) VALUES
+	(1, 'doudou', 'lapin'),
+	(2, 'cartable', 'fresk');
+/*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 
 -- Listage de la structure de la table lesptitspouces. client
 CREATE TABLE IF NOT EXISTS `client` (
@@ -97,21 +117,6 @@ CREATE TABLE IF NOT EXISTS `marques` (
 /*!40000 ALTER TABLE `marques` DISABLE KEYS */;
 /*!40000 ALTER TABLE `marques` ENABLE KEYS */;
 
--- Listage de la structure de la table lesptitspouces. newarticles
-CREATE TABLE IF NOT EXISTS `newarticles` (
-  `id_article` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(255) NOT NULL DEFAULT '0',
-  `extrait` varchar(255) NOT NULL DEFAULT '0',
-  `contenu` varchar(255) NOT NULL DEFAULT '0',
-  `image` varchar(50) NOT NULL DEFAULT '0',
-  `prix` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_article`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- Listage des données de la table lesptitspouces.newarticles : ~0 rows (environ)
-/*!40000 ALTER TABLE `newarticles` DISABLE KEYS */;
-/*!40000 ALTER TABLE `newarticles` ENABLE KEYS */;
-
 -- Listage de la structure de la table lesptitspouces. slider
 CREATE TABLE IF NOT EXISTS `slider` (
   `id_slider` int(11) NOT NULL AUTO_INCREMENT,
@@ -126,8 +131,10 @@ CREATE TABLE IF NOT EXISTS `slider` (
 -- Listage de la structure de la table lesptitspouces. tva
 CREATE TABLE IF NOT EXISTS `tva` (
   `id_tva` int(11) NOT NULL AUTO_INCREMENT,
-  `valeur_tva` int(11) NOT NULL,
-  PRIMARY KEY (`id_tva`)
+  `valeur_tva` decimal(10,0) NOT NULL,
+  PRIMARY KEY (`id_tva`),
+  KEY `FK_tva_articles` (`valeur_tva`),
+  CONSTRAINT `FK_tva_articles` FOREIGN KEY (`valeur_tva`) REFERENCES `articles` (`prixTTC`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table lesptitspouces.tva : ~0 rows (environ)

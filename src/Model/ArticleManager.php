@@ -37,7 +37,7 @@ class ArticleManager
     // recupère les nouveaux articles pour la homePage
     public function findAllNouveaute() : array
     {
-        $req = $this->db->prepare('SELECT * FROM newarticles');
+        $req = $this->db->prepare('SELECT * FROM articles where newarticle = 1');
         $req->execute();
 
         return $req->fetchAll();
