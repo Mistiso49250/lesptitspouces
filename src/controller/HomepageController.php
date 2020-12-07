@@ -25,11 +25,12 @@ class HomePageController
 
     public function login(): void
     {
+        $messageError = null;
         if ($this->homePageManager->user() !== null) {
             header('Location: index.php');
             exit();
         }
-        if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['passwprd'])) {
+        if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
             $user = $this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
             if ($user) {
                 $this->session->setFlash('succes', 'vous etes maintenant connecté');
@@ -39,6 +40,8 @@ class HomePageController
             }
             $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
         }
+
+        $this->view->render('frontoffice/login', ['messageError'=>$messageError]);
     }
 
 

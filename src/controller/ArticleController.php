@@ -28,14 +28,4 @@ class ArticleController
             'article'=>$article
         ]);
     }
-
-    // affiche les informations d'un nouvel article
-    public function newArticle(int $idNewArticle) : void
-    {
-        $newArticle = $this->articleManager->findNouveaute($idNewArticle);
-
-        $this->view->render('frontoffice/newArticle', [
-            'newArticle'=>$newArticle
-        ]);
-    }
 }

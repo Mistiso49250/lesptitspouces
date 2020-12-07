@@ -5,23 +5,77 @@ namespace Oc\Model;
 
 use Oc\Model\HomePageManager;
 use Oc\Tools\DbConnect;
+use Oc\Tools\Session;
 
 class RegisterManager
 {
-    // private $db;
-    // private $errors;
-    // private $validation;
-    // private $HomePageManager;
-    // private $sesion;
+    private $db;
+    private $errors;
+    private $validation;
+    private $HomePageManager;
+    private $sesion;
 
-    // public function __construct()
-    // {
-    //     $this->db = (new DbConnect())->connectToDb();
-    //     $this->errors = array();
-    //     $this->validation = new Validation($_POST);
-    //     $this->homePage = new HomePageManager();
-    //     $this->sesion = new session();
-    // }
+    public function __construct()
+    {
+        $this->db = (new DbConnect())->connectToDb();
+        $this->sesion = new session();
+    }
+
+    public function auth(): void
+    {
+    }
+
+    public function register(
+        string $username,
+        string $name,
+        string $adresse,
+        string $adSup,
+        string $postal,
+        string $ville,
+        string $pays,
+        int $phone,
+        string $societe,
+        string $email,
+        string $password
+    ) : bool
+    {
+        $options = [
+            'cost' => 12,
+        ];
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT, $options);
+        $token = str_random(60);
+        $client = $this->db->prepare('INSERT into client (username, name, adresse, adresse_sup, postal, ville, pays, phone, 
+        societe, email, password, role, confirmation_token  date_inscription ) VALUES(:username, :name, :adresse, :adress_sup, :postal, :ville, :pays, :phone, 
+        :societe, :email, :password, :confirmation_token, NOW()');
+
+        return $client->execute([
+            'username'=>$username,
+            'name'=>$name,
+            'adresse'=>$adresse,
+            'adresse_sup'=>$adSup,
+            'postal'=>$postal,
+            'ville'=>$ville,
+            'pays'=>$pays,
+            'phone' =>$phone,
+            'societe'=>$societe,
+            'email'=>$email,
+            'password'=>$passwordHash,
+            'confirmation_token'=>$token
+        ]);
+    }
+
+    public function validation($username)
+    {
+        $req = $this->db->prepare('SELECT id_client from client where username = :username');
+        $req->execute(['username'=>$username]);
+        $user = $req->fetch();
+
+        return $user['id_client'];
+    }
+
+    public function validationCompte(): void
+    {
+    }
 
     // public function validation()
     // {

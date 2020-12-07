@@ -7,39 +7,35 @@
 {% block content %}
 
     <div class="contentRegister">
-        <div id="RegisterBanniere">
-            <div class="banniere">
-                <h4>S'inscrire</h4>
-            </div>
-        </div>
+       
+       <h4>S'inscrire</h4>
+         
 
-        <!-- Verification existance compte  -->
-        <?php if(!empty($errors)): ?>
-        <div class="alert alert-danger">
-            <p>Vous n'avez pas remplis le formulaire correctement</p>
-            <ul>
-                <?php foreach($errors as $error): ?>
-                <li><?=$errors;?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-        <?php endif; ?>
-
+        <!-- gestion des notifications -->
+        {% if  %}
+        <?php if(($data['session'])->hasFlashes()): ?>
+        {% for  in  %}
+        <?php foreach(($data['session'])->getFlashes() as $type => $message): ?>
+        <ul class="alert alert-{{ type }}">
+            <li>{{ message }}</li>
+        </ul>
+        {% endfor %}
+        {% endif %}
         <!-- Formulaire d'inscription -->
         <form action="" method="POST">
             <div class="form-group">
                 <label for="">Nom</label>
-                <input type="text" name="username" class="form-control" pattern="^[a-zA-Z0-9_]+$" required/>
+                <input type="text" name="username" class="form-control" required/>
             </div>
 
             <div class="form-group">
                 <label for="">Prenom</label>
-                <input type="text" name="name" class="form-control" pattern="^[a-zA-Z0-9_]+$" required/>
+                <input type="text" name="name" class="form-control" required/>
             </div>
 
             <div class="form-group">
                 <label for="">Société</label>
-                <input type="text" name="société" class="form-control" pattern="^[a-zA-Z0-9_]+$" />
+                <input type="text" name="société" class="form-control" />
             </div>
 
             <div class="form-group">
@@ -49,17 +45,17 @@
 
             <div class="form-group">
                 <label for="">Adresse Postale</label>
-                <input type="text" name="adresse" class="form-control" pattern="^[a-zA-Z0-9_]+$" required/>
+                <input type="text" name="adresse" class="form-control" required/>
             </div>
 
             <div class="form-group">
                 <label for="">Informations complémentaires (Numéro d'appartement, Code de la porte, Etage ...)</label>
-                <input type="text" name="adress supp" class="form-control" />
+                <input type="text" name="adress_supp" class="form-control" />
             </div>
 
             <div class="form-group">
                 <label for="">Code Postal</label>
-                <input type="text" name="postal" class="form-control" pattern="^9[0-9]{7}" required/>
+                <input type="text" name="postal" class="form-control" required/>
             </div>
 
             <div class="form-group">
@@ -77,7 +73,7 @@
             
             <div class="form-group">
                 <label for="">Téléphone</label>
-                <input type="tel" name="phone" pattern="^9[0-9]{7}" minlength="8" maxlength="10" class="form-control" />
+                <input type="tel" name="phone" minlength="8" maxlength="10" class="form-control" />
             </div>
 
             <div class="form-group">

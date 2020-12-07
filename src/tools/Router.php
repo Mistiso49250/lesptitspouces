@@ -3,18 +3,28 @@ declare(strict_types=1);
 
 namespace Oc\Tools;
 
-use Oc\Controller\HomePageController;
 use Oc\Controller\ArticleController;
+use Oc\Controller\HomePageController;
+use Oc\Tools\Request;
 
 class Router
 {
+    private $request;
 
-    public function run()
+    public function __construct()
     {
-        // Routing
-        $action = isset($_GET['action']) ? $_GET['action'] : "home";
-        // var_dump("action", $action); die();
+        $this->request = new Request();
+    }
 
+    public function run(): void
+    {
+        //On test si une action a été défini ? si oui alors on récupére l'action :
+        // sinon on mets une action par défaut (ici l'action home)
+
+        // $action = $this->get['action'] ?? 'home';
+        $action = $this->request->getitem('action');
+
+        
 
         switch ($action) { // partie front
                 // affichage des articles
@@ -23,10 +33,6 @@ class Router
                 $controller->article((int)$_GET['id']);
                 break;
                 // affichage des nouveaux article
-            case 'newArticle':
-                $controller = new ArticleController();
-                $controller->newArticle((int)$_GET['id']);
-                break;
             
             case 'forget':
                 $controller = new HomePageController();
