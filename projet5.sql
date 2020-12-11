@@ -34,6 +34,8 @@ REPLACE INTO `admin` (`id&dmin`, `name`, `password`, `role`) VALUES
 -- Listage de la structure de la table lesptitspouces. articles
 CREATE TABLE IF NOT EXISTS `articles` (
   `id_article` int(11) NOT NULL AUTO_INCREMENT,
+  `id_tva` int(11) NOT NULL,
+  `id_categorie` int(11) NOT NULL,
   `titre` varchar(255) NOT NULL,
   `extrait` varchar(255) NOT NULL,
   `contenu_article` longtext NOT NULL,
@@ -47,8 +49,8 @@ CREATE TABLE IF NOT EXISTS `articles` (
 
 -- Listage des données de la table lesptitspouces.articles : ~1 rows (environ)
 /*!40000 ALTER TABLE `articles` DISABLE KEYS */;
-REPLACE INTO `articles` (`id_article`, `titre`, `extrait`, `contenu_article`, `image`, `prixTTC`, `prixHT`, `newarticle`) VALUES
-	(1, 'poule', 'poule', 'poule', 'pixie\\Poule-Poule.jpg', 15, 0, 1);
+REPLACE INTO `articles` (`id_article`, `id_tva`, `id_categorie`, `titre`, `extrait`, `contenu_article`, `image`, `prixTTC`, `prixHT`, `newarticle`) VALUES
+	(1, 0, 0, 'poule', 'poule', 'poule', 'pixie\\Poule-Poule.jpg', 15, 0, 1);
 /*!40000 ALTER TABLE `articles` ENABLE KEYS */;
 
 -- Listage de la structure de la table lesptitspouces. bannieres
@@ -67,36 +69,36 @@ CREATE TABLE IF NOT EXISTS `categorie` (
   `id_categorie` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(50) DEFAULT NULL,
   `description` text NOT NULL,
+  `id_article` int(11) NOT NULL,
   PRIMARY KEY (`id_categorie`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table lesptitspouces.categorie : ~2 rows (environ)
 /*!40000 ALTER TABLE `categorie` DISABLE KEYS */;
-REPLACE INTO `categorie` (`id_categorie`, `code`, `description`) VALUES
-	(1, 'doudou', 'lapin'),
-	(2, 'cartable', 'fresk');
+REPLACE INTO `categorie` (`id_categorie`, `code`, `description`, `id_article`) VALUES
+	(1, 'doudou', 'lapin', 0),
+	(2, 'cartable', 'fresk', 0);
 /*!40000 ALTER TABLE `categorie` ENABLE KEYS */;
 
 -- Listage de la structure de la table lesptitspouces. client
 CREATE TABLE IF NOT EXISTS `client` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_client` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(255) NOT NULL DEFAULT '0',
-  `name` varchar(255) DEFAULT NULL,
-  `adresse` varchar(255) DEFAULT NULL,
-  `postal` int(11) DEFAULT NULL,
-  `ville` varchar(255) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `adresse` varchar(255) NOT NULL,
+  `adress_sup` varchar(255) DEFAULT NULL,
+  `postal` int(11) NOT NULL,
+  `ville` varchar(255) NOT NULL,
   `pays` varchar(255) DEFAULT NULL,
-  `phone` int(11) DEFAULT NULL,
-  `société` varchar(255) DEFAULT NULL,
+  `phone` int(11) NOT NULL,
+  `societe` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL DEFAULT '0',
   `password` varchar(255) NOT NULL DEFAULT '0',
-  `date_inscription` date NOT NULL,
+  `date_inscription` datetime NOT NULL,
+  `role` text,
   `confirmation_token` varchar(60) DEFAULT NULL,
   `confirmed_at` datetime DEFAULT NULL,
-  `reset_token` varchar(60) DEFAULT NULL,
-  `reset_at` datetime DEFAULT NULL,
-  `role` text,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id_client`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table lesptitspouces.client : ~0 rows (environ)
@@ -133,8 +135,7 @@ CREATE TABLE IF NOT EXISTS `tva` (
   `id_tva` int(11) NOT NULL AUTO_INCREMENT,
   `valeur_tva` decimal(10,0) NOT NULL,
   PRIMARY KEY (`id_tva`),
-  KEY `FK_tva_articles` (`valeur_tva`),
-  CONSTRAINT `FK_tva_articles` FOREIGN KEY (`valeur_tva`) REFERENCES `articles` (`prixTTC`) ON DELETE CASCADE ON UPDATE CASCADE
+  KEY `FK_tva_articles` (`valeur_tva`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Listage des données de la table lesptitspouces.tva : ~0 rows (environ)

@@ -4,21 +4,27 @@ declare(strict_types=1);
 namespace Oc\Model;
 
 use Oc\Model\HomePageManager;
+use Oc\Model\ValidatorManager;
 use Oc\Tools\DbConnect;
+use Oc\Tools\Fonction;
 use Oc\Tools\Session;
 
 class RegisterManager
 {
     private $db;
+    private $fonction;
     private $errors;
     private $validation;
     private $HomePageManager;
-    private $sesion;
+    private $session;
+    private $validatorManager;
 
     public function __construct()
     {
         $this->db = (new DbConnect())->connectToDb();
-        $this->sesion = new session();
+        $this->session = new session();
+        $this->fonction = new Fonction();
+        $this->validatorManager = new ValidatorManager();
     }
 
     public function auth(): void
@@ -43,7 +49,7 @@ class RegisterManager
             'cost' => 12,
         ];
         $passwordHash = password_hash($password, PASSWORD_BCRYPT, $options);
-        $token = str_random(60);
+        $token = $this->fonction->str_random(60);
         $client = $this->db->prepare('INSERT into client (username, name, adresse, adresse_sup, postal, ville, pays, phone, 
         societe, email, password, role, confirmation_token  date_inscription ) VALUES(:username, :name, :adresse, :adress_sup, :postal, :ville, :pays, :phone, 
         :societe, :email, :password, :confirmation_token, NOW()');
@@ -64,6 +70,13 @@ class RegisterManager
         ]);
     }
 
+    public function lastInsertId()
+    {
+        $req = $this->db->lastInsertId();
+
+        return $req;
+    }
+
     public function validation($username)
     {
         $req = $this->db->prepare('SELECT id_client from client where username = :username');
@@ -73,8 +86,22 @@ class RegisterManager
         return $user['id_client'];
     }
 
-    public function validationCompte(): void
+    public function validationEmail($email)
     {
+        $req = $this->db->prepare('SELECT id_client from client where email = :email');
+        $req->execute(['email'=>$email]);
+        $user = $req->fetch();
+
+        return $user['id_client'];
+    }
+
+    public function isUniq($field): void
+    {
+        $req = $this->db->query('SELECT id_client FROM client WHERE $field = ?', [$this->validatorManager->getField($field)]);
+        $user = $req->fetch();
+        if ($user) {
+            $this->session->setFlash('danger', 'Ce pseudo est déja pris');
+        }
     }
 
     // public function validation()

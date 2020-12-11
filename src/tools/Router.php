@@ -18,13 +18,7 @@ class Router
 
     public function run(): void
     {
-        //On test si une action a été défini ? si oui alors on récupére l'action :
-        // sinon on mets une action par défaut (ici l'action home)
-
-        // $action = $this->get['action'] ?? 'home';
-        $action = $this->request->getitem('action');
-
-        
+        $action = $this->request->getItem('action');
 
         switch ($action) { // partie front
                 // affichage des articles
