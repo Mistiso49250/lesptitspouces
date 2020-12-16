@@ -7,6 +7,7 @@ use Oc\Model\RegisterManager;
 use Oc\Tools\Fonction;
 use Oc\Tools\Session;
 use Oc\View\View;
+use Oc\Tools\Request;
 
 class RegisterController
 {
@@ -14,13 +15,15 @@ class RegisterController
     private $session;
     private $registerManager;
     private $fonction;
+    private $request;
 
     public function __construct()
     {
         $this->view = new View('../templates/frontoffice');
         $this->session = new session();
         $this->registerManager = new RegisterManager();
-        $this->fonction = new Fonction();
+        $this->fonction = new Fonction($_POST);
+        $this->request = new Request();
     }
 
     public function register($post): void
@@ -29,7 +32,19 @@ class RegisterController
         $clientId = null;
         $user = $this->registerManager->validation($post['username']);
         $userEmail = $this->registerManager->validationEmail($post['email']);
+
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
+
+            // $this->fonction->isAlphanum('username', "Tout les champs ne sont pas remplis correctement");
+            // if($this->fonction->isValid()){
+            //     $this->registerManager->isUniq('username', "Ce nom est déjà pris");
+            // }
+            // $this->fonction->isEmail('email', "Votre email n'est pas valide");
+            // if($this->fonction->isValid()){
+            //     $this->registerManager->isUniq('email', "Cet email est déjà utilisé pour un autre compte");
+            // }
+
+
             if (empty($post['username']) ||
             empty($post['name']) ||
             empty($post['adresse']) ||
@@ -77,8 +92,23 @@ class RegisterController
         }
 
         $this->view->render('frontoffice/register', [
-            'session'=> $this->session,
+            'session'=> $this->session->hasFlashes(),
             'clientId'=>$clientId
         ], null);
+    }
+
+    public function confirm()
+    {
+        $userConfirm = $this->registerManager->confirm();
+        if($this->request->confirm()){
+            $this->session->setFlash('success', "Votre compte a bien été validé ");
+            header('Location: index.php');
+            exit();
+        }
+        else{
+            $this->session->setFlash('danger', 'Validation incorrecte');
+            header('Location: index.php');
+            exit();
+        }
     }
 }

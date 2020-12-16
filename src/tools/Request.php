@@ -7,21 +7,34 @@ class Request
 {
 
     private $get;
+    private $post;
+    private $token;
+    private $userId;
 
     public function __construct()
     {
         $this->get = $_GET;
+        $this->post = $_POST;
     }
 
-    public function getItem($action)
+    public function getItem($item)
     {
-        $action = $this->get['action'] ?? 'home';
+        $action = $this->get[$item] ?? null;
 
         return $action;
     }
 
-    public function postItem(): void
+    public function postItem($item)
     {
+        $action = $this->post[$item] ?? null;
+
+        return $action;
+    }
+
+    public function confirm()
+    {
+        $userId = $this->get['id_client'];
+        $token = $this->get['confirmation_token'];
     }
 
     // public function getErrors(){

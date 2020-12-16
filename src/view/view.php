@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Oc\View;
 
+use Oc\Tools\TwigExtention;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -13,12 +14,15 @@ class View
     public function __construct()
     {
         $loader = new FilesystemLoader('../templates');
-        // var_dump("loader", $loader);
-        // die();
+        
         $this->twig = new Environment($loader, [
             'cache' => false
         ]);
+
+        // $this->twig->addExtension(new TwigExtention());
     }
+
+
 
     public function render(string $templates, ?array $data) : void
     {
