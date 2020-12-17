@@ -22,6 +22,7 @@ class RegisterManager
 
     public function auth(): void
     {
+
     }
 
     public function register(
@@ -88,31 +89,40 @@ class RegisterManager
         return $user['id_client'];
     }
 
-    public function isUniq($field): void
-    {
-        $req = $this->db->query('SELECT id_client FROM client WHERE $field = ?', [$this->fonction->getField($field)]);
-        $user = $req->fetch();
-        if ($user) {
-            $this->session->setFlash('danger', 'Ce pseudo est déja pris');
-        }
-    }
+    // public function isUniq($field): void
+    // {
+    //     $req = $this->db->query('SELECT id_client FROM client WHERE $field = ?', [$this->fonction->getField($field)]);
+    //     $user = $req->fetch();
+    //     if ($user) {
+    //         $this->session->setFlash('danger', 'Ce pseudo est déja pris');
+    //     }
+    // }
 
-    public function confirm($userId, $token)
-    {
-        $user = $this->db->query('SELECT * from client where id_client = :idClient', [$userId])->fetch();
-        if($user && $user->confirmation_token == $token){
-            $this->db->query('UPDATE client set confirmation_token = null, confirmed_at = now() where id_client = :idClien', [$userId])->fetch();
-        }
-    }
+    // public function confirm($userId, $token)
+    // {
+    //     $user = $this->db->query('SELECT * from client where id_client = :idClient', [$userId])->fetch();
+    //     if($user && $user->confirmation_token == $token){
+    //         $this->db->query('UPDATE client set confirmation_token = null, confirmed_at = now() where id_client = :idClien', [$userId])->fetch();
+    //     }
+    // }
 
-    public function confirmEmail($userId)
+    // public function confirmEmail($userId)
+    // {
+    //     $req = $this->db->prepare('SELECT confirmation_token from client where id_client = :idClient');
+    //     $req->execute(['userId'=>$userId]);
+
+    //     $user = $req->fetch();
+    //     return $user;
+        
+    // }
+
+    public function updateConfirmationAccount($userId)
     {
-        $req = $this->db->prepare('SELECT confirmation_token from client where id_client = :idClient');
+        $req = $this->db->prepare('UPDATE client set confirmation_token = null, confirmed_at = now() where id_client = :idClient', [$userId])->fetch();
         $req->execute(['userId'=>$userId]);
 
         $user = $req->fetch();
         return $user;
-        
     }
 
 }

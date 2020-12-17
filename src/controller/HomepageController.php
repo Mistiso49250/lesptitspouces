@@ -52,9 +52,9 @@ class HomePageController
         exit();
     }
 
-    public function forget(): void
+    public function forgetPassword(): void
     {
-        $this->view->render('frontoffice/forget', null);
+        $this->view->render('frontoffice/forgetPassword', null);
     }
 
     public function register(): void
@@ -67,9 +67,14 @@ class HomePageController
         $this->view->render('frontoffice/account', null);
     }
 
-    public function reset(): void
+    public function resetPassword(): void
     {
-        $this->view->render('frontoffice/reset', null);
+        $this->view->render('frontoffice/resetPassword', null);
+    }
+
+    public function changePassword(): void
+    {
+        $this->view->render('frontoffice/changePassword', null);
     }
 
 

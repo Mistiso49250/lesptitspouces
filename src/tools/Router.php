@@ -5,6 +5,7 @@ namespace Oc\Tools;
 
 use Oc\Controller\ArticleController;
 use Oc\Controller\HomePageController;
+use Oc\Controller\RegisterController;
 use Oc\Tools\Request;
 
 class Router
@@ -25,26 +26,30 @@ class Router
             case 'article':
                 $controller = new ArticleController();
                 $controller->article((int)$_GET['id']);
-                break;
+            break;
                 // affichage des nouveaux article
             
-            case 'forget':
+            case 'forgetPassword':
                 $controller = new HomePageController();
-                $controller->forget();
+                $controller->forgetPassword();
             break;
             case 'register':
                 $controller = new HomePageController();
                 $controller->register();
             break;
+            case 'resetPassword':
+                $controller = new HomePageController();
+                $controller->resetPassword();
+            break;
+            case 'changePassword':
+                $controller = new HomePageController();
+                $controller->changePassword();
+            break;
+            //connecion au compte utilisateur
             case 'account':
                 $controller = new HomePageController();
                 $controller->account();
             break;
-            case 'reset':
-                $controller = new HomePageController();
-                $controller->reset();
-            break;
-
             // connexion à la partie admin
             case 'login':
                 $controller = new HomePageController();

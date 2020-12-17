@@ -1,7 +1,7 @@
 {% extends "/frontoffice/layout.html.twig" %}
 
 {% block head %}
-{<title>Se connecter</title>}
+<title>Se connecter</title>
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,7 @@
         
 
         <!-- Afficher le formulaire de saisie du mot de passe -->
-        <h2 class="titleConnection">Veuillez saisir votre identifiant et le mot de passe pour vous connecter</h2>
+        <h3 class="titleConnection">Veuillez saisir votre identifiant et le mot de passe pour vous connecter</h3>
 
         <form action="index.php?action=login" method="POST">
             <div class="form-group">
@@ -26,7 +26,7 @@
             </div>
 
             <div class="form-group">
-                <label for="">Mot de passe<a href="index.php?action=forget"> (J'ai oublié mon mot de passe)</a></label>
+                <label for="">Mot de passe<a href="index.php?action=forgetPassword"> (J'ai oublié mon mot de passe)</a></label>
                 <input type="password" name="password" class="form-control" placeholder="Mot de passe" />
             </div>
 

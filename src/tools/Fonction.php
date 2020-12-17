@@ -5,17 +5,20 @@ namespace Oc\Tools;
 
 use Oc\Tools\DbConnect;
 use Oc\Tools\Session;
+use Oc\Tools\Request;
 
 class Fonction
 {
     private $data;
     private $session;
+    private $request;
 
     public function __construct($data)
     {
         $this->db = (new DbConnect())->connectToDb();
         $this->data = $data;
         $this->session = new session();
+        $this->request = new Request();
     }
 
     // génère une clef de 60 charactères
@@ -57,6 +60,50 @@ class Fonction
     public function isValid()
     {
         return empty($this->session);
+    }
+
+    public function isUniq($field): void
+    {
+        $req = $this->db->query('SELECT id_client FROM client WHERE $field = ?', [$this->getField($field)]);
+        $user = $req->fetch();
+        if ($user) {
+            $this->session->setFlash('danger', 'Ce pseudo est déja pris');
+        }
+    }
+
+    public function confirm($userId, $token)
+    {
+        $user = $this->db->query('SELECT * from client where id_client = :idClient', [$userId])->fetch();
+        if($user && $user->confirmation_token == $token){
+            $this->db->query('UPDATE client set confirmation_token = null, confirmed_at = now() where id_client = :idClien', [$userId])->fetch();
+        }
+    }
+
+    public function confirmEmail($userId)
+    {
+        $req = $this->db->prepare('SELECT confirmation_token from client where id_client = :idClient');
+        $req->execute(['userId'=>$userId]);
+
+        $user = $req->fetch();
+        return $user;
+        
+    }
+
+    public function confirmAccount()
+    {
+        $userConfirm = $this->registerManager->confirm();
+        if($this->request->confirm()){
+            $this->session->setFlash('success', "Votre compte a bien été validé ");
+            header('Location: index.php');
+            exit();
+        }
+        else{
+            $this->session->setFlash('danger', 'Validation incorrecte');
+            header('Location: index.php');
+            exit();
+        }
+
+
     }
     
 }
