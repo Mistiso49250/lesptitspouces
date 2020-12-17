@@ -4,14 +4,15 @@ declare(strict_types=1);
 namespace Oc\Tools;
 
 use Oc\Tools\DbConnect;
-use Oc\Tools\Session;
 use Oc\Tools\Request;
+use Oc\Tools\Session;
 
 class Fonction
 {
     private $data;
     private $session;
     private $request;
+    private $db;
 
     public function __construct($data)
     {
@@ -38,7 +39,7 @@ class Fonction
 
     public function isAlphanum($field): void
     {
-        if (!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField[$field])) {
+        if (!preg_match('/^[a-zA-Z0-9_]+$/', $this->getField([$field]))) {
             $this->session->setFlash('danger', 'Tout les champs ne sont pas remplis correctement');
         }
     }
@@ -71,10 +72,10 @@ class Fonction
         }
     }
 
-    public function confirm($userId, $token)
+    public function confirm($userId, $token): void
     {
         $user = $this->db->query('SELECT * from client where id_client = :idClient', [$userId])->fetch();
-        if($user && $user->confirmation_token == $token){
+        if ($user && $user->confirmation_token === $token) {
             $this->db->query('UPDATE client set confirmation_token = null, confirmed_at = now() where id_client = :idClien', [$userId])->fetch();
         }
     }
@@ -86,24 +87,19 @@ class Fonction
 
         $user = $req->fetch();
         return $user;
-        
     }
 
-    public function confirmAccount()
+    public function confirmAccount(): void
     {
-        $userConfirm = $this->registerManager->confirm();
-        if($this->request->confirm()){
+        // $userConfirm = $this->registerManager->confirm();
+        if ($this->request->confirm()) {
             $this->session->setFlash('success', "Votre compte a bien été validé ");
             header('Location: index.php');
             exit();
-        }
-        else{
+        } else{
             $this->session->setFlash('danger', 'Validation incorrecte');
             header('Location: index.php');
             exit();
-        }
-
-
+        }   
     }
-    
 }

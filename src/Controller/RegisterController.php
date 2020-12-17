@@ -6,9 +6,9 @@ namespace Oc\Controller;
 
 use Oc\Model\RegisterManager;
 use Oc\Tools\Fonction;
+use Oc\Tools\Request;
 use Oc\Tools\Session;
 use Oc\View\View;
-use Oc\Tools\Request;
 
 class RegisterController
 {
@@ -33,10 +33,10 @@ class RegisterController
         $clientId = null;
         $user = $this->registerManager->validation($post['username']);
         $userEmail = $this->registerManager->validationEmail($post['email']);
-        var_dump($user); die();
+        var_dump($user);
+        die();
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
-            
             if (
                 empty($post['username']) || empty($post['name']) || empty($post['adresse']) || empty($post['adress_supp']) ||
                 empty($post['postal']) || empty($post['ville']) || empty($post['pays']) || empty($post['societe']) ||
@@ -77,7 +77,6 @@ class RegisterController
                     $this->session->setFlash('success', "un email de confirmation vous a été envoyé pour validé votre compte ");
                     header('Location: index.php');
                     exit();
-                    
                 }
             }
 

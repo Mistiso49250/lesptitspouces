@@ -5,7 +5,7 @@ namespace Oc\Tools;
 
 class Session
 {
-    private $_SESSION;
+    private $session;
 
     public function __construct()
     {

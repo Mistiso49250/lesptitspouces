@@ -22,7 +22,6 @@ class RegisterManager
 
     public function auth(): void
     {
-
     }
 
     public function register(
@@ -37,8 +36,7 @@ class RegisterManager
         string $societe,
         string $email,
         string $password
-    ) : bool
-    {
+    ) : bool {
         $options = [
             'cost' => 12,
         ];
@@ -124,5 +122,4 @@ class RegisterManager
         $user = $req->fetch();
         return $user;
     }
-
 }

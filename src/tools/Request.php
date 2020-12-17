@@ -5,7 +5,6 @@ namespace Oc\Tools;
 
 class Request
 {
-
     private $get;
     private $post;
     private $token;
@@ -31,7 +30,7 @@ class Request
         return $action;
     }
 
-    public function confirm()
+    public function confirm(): void
     {
         $userId = $this->get['id_client'];
         $token = $this->get['confirmation_token'];
