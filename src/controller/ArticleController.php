@@ -26,7 +26,7 @@ class ArticleController
     {
         $article = $this->articleManager->findArticle($idArticle);
 
-        $this->view->render('article', [
+        $this->view->render('frontoffice/article', [
             'article'=>$article,
             'flashMessages' => $this->session->getFlashes()
         ]);

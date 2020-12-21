@@ -21,9 +21,9 @@ class Session
         session_destroy();
     }
 
-    public function setFlash($key, $message): void
+    public function setFlash($type, $message): void
     {
-        $_SESSION['flash'][$key] = $message;
+        $_SESSION['flash'][] = ['type'=>$type, 'message'=>$message];
     }
 
     public function hasFlashes()

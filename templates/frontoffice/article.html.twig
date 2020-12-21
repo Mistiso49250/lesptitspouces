@@ -1,30 +1,32 @@
 {% extends "/frontoffice/layout.html.twig" %}
 
 {% block head %}
-<title>Articles</title>
+<title>{{ item.id_article }}</title>
 {% endblock %}
 
 {% block content %}
 
-    {% for article in articles %}
-        <h2>{{ article.titre }}</h2>
-        <img src="{{ article.image }}" alt="" class="img-fluid">
+<div class="container-fluid row mb-4">
+    {% for item in article %}
+        <h2>{{ item.titre }}</h2>
+        <img src="{{ item.image }}" alt="" class="img-fluid">
         <div class="infoProduit">
             <div class="titreArticle">
-                <h2>{{ article.titre }}</h2>
-                {{ article.contenu }}
+                <h2>{{ item.titre }}</h2>
+                {{ item.contenu }}
             </div>
             <div class="prixArticle">
-                <span class="prix">{{ article.prix }} </span>
+                <span class="prix">{{ item.prix }} </span>
             </div>
             <div class="action">
-                {{ article.stock }}
+                {{ item.stock }}
                 {{ quantité }}
                 {{ prix total }}
                 <button type="submit" title="ajouter au panier"></button>
             </div>
         </div>
     {% endfor %}
+</div>
 
 
 {% endblock %}

@@ -12,17 +12,27 @@
          
 
         <!-- gestion des notifications -->
-        {% if data %}
-        {# <?php if(($data['session'])->hasFlashes()): ?> #}
-        {% for message in data %}
-        {# <?php foreach(($data['session'])->getFlashes() as $type => $message): ?> #}
-        <ul class="alert alert-{{ type }}">
+        
+        {% for message in messages %}
+        <ul class="alert alert-{{ message.type }}">
+            <li>{{ message.message }}</li>
+        </ul>
+        {% endfor %}
+
+        {# {% for message in messageSuccess %}
+        <ul class="alert alert-success">
             <li>{{ message }}</li>
         </ul>
         {% endfor %}
-        {% endif %} 
+        {% for message in messageError %}
+        <ul class="alert alert-danger">
+            <li>{{ message }}</li>
+        </ul>
+        {% endfor %} #}
+
+         
         <!-- Formulaire d'inscription -->
-        <form action="" method="POST">
+        <form action="index.php?action=register" method="POST">
             <div class="form-group">
                 <label for="">Nom</label>
                 <input type="text" name="username" class="form-control" required/>

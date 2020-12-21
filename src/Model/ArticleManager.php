@@ -27,7 +27,7 @@ class ArticleManager
     // récupère les informations d'un nouvel article
     public function findNouveaute(int $idArticle) : ?array
     {
-        $req = $this->db->prepare('SELECT * from newarticles where id_article = :idarticle');
+        $req = $this->db->prepare('SELECT id_article from articles where newArticle = 1');
         $req->execute(['idarticle'=>$idArticle]);
         $articles = $req->fetch();
 

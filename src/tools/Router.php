@@ -34,8 +34,8 @@ class Router
                 $controller->forgetPassword();
             break;
             case 'register':
-                $controller = new HomePageController();
-                $controller->register();
+                $controller = new RegisterController();
+                $controller->register($_POST);
             break;
             case 'resetPassword':
                 $controller = new HomePageController();

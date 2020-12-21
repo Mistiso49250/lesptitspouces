@@ -33,8 +33,6 @@ class RegisterController
         $clientId = null;
         $user = $this->registerManager->validation($post['username']);
         $userEmail = $this->registerManager->validationEmail($post['email']);
-        var_dump($user);
-        die();
 
         if ($_SERVER['REQUEST_METHOD'] === "POST") {
             if (
@@ -80,8 +78,13 @@ class RegisterController
                 }
             }
 
+            $this->session->setFlash('success', "un email de confirmation vous a été envoyé pour validé votre compte ");
+            $this->session->setFlash('success', "toto");
+            $this->session->setFlash('danger', "tata");
+
+            // var_dump($this->session->getFlashes());die();
             $this->view->render('frontoffice/register', [
-                'session' => $this->session->hasFlashes(),
+                'messages'=> $this->session->getFlashes(),
             ]);
         }
     }

@@ -96,10 +96,9 @@ class Fonction
             $this->session->setFlash('success', "Votre compte a bien été validé ");
             header('Location: index.php');
             exit();
-        } else{
-            $this->session->setFlash('danger', 'Validation incorrecte');
-            header('Location: index.php');
-            exit();
-        }   
+        }
+        $this->session->setFlash('danger', 'Validation incorrecte');
+        header('Location: index.php');
+        exit();
     }
 }
