@@ -9,9 +9,9 @@ class ArticleManager
 {
     private $db;
 
-    public function __construct()
+    public function __construct(DbConnect $dbConnect)
     {
-        $this->db = (new DbConnect())->connectToDb();
+        $this->db = $dbConnect->connectToDb();
     }
 
     // récupère les informations d'un article
@@ -19,20 +19,20 @@ class ArticleManager
     {
         $req = $this->db->prepare('SELECT * from articles where id_article = :idarticle');
         $req->execute(['idarticle'=>$idArticle]);
-        $articles = $req->fetch();
+        $article = $req->fetch();
 
-        return $articles === false ? null : $articles;
+        return $article === false ? null : $article;
     }
 
     // récupère les informations d'un nouvel article
-    public function findNouveaute(int $idArticle) : ?array
-    {
-        $req = $this->db->prepare('SELECT id_article from articles where newArticle = 1');
-        $req->execute(['idarticle'=>$idArticle]);
-        $articles = $req->fetch();
+    // public function findNouveaute(int $idArticle) : ?array
+    // {
+    //     $req = $this->db->prepare('SELECT id_article from articles where newArticle = 1');
+    //     $req->execute(['idarticle'=>$idArticle]);
+    //     $articles = $req->fetch();
 
-        return $articles === false ? null : $articles;
-    }
+    //     return $articles === false ? null : $articles;
+    // }
 
     // recupère les nouveaux articles pour la homePage
     public function findAllNouveaute() : array
