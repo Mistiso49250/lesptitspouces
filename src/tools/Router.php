@@ -8,7 +8,10 @@ use Oc\Model\ArticleManager;
 use Oc\Controller\ArticleController;
 use Oc\Controller\HomePageController;
 use Oc\Controller\RegisterController;
-
+use Oc\Controller\UserController;
+use Oc\Model\HomePageManager;
+use Oc\Model\RegisterManager;
+use Oc\Model\ResetManager;
 
 class Router
 {
@@ -24,6 +27,10 @@ class Router
         $action = $this->request->getItem('action');
         $bddConnect = new DbConnect();
         $articleManager = new ArticleManager($bddConnect);
+        $registerManager = new RegisterManager($bddConnect);
+        $request = new Request();
+        $session = new Session();
+        $homePageManager = new HomePageManager($bddConnect);
 
         switch ($action) { // partie front
                 // affichage des articles
@@ -37,10 +44,10 @@ class Router
             //     $controller = new HomePageController();
             //     $controller->forgetPassword();
             // break;
-            // case 'register':
-            //     $controller = new RegisterController();
-            //     $controller->register($_POST);
-            // break;
+            case 'register':
+                $controller = new UserController($registerManager, $request, $session, $homePageManager);
+                $controller->register($_POST);
+            break;
             // case 'resetPassword':
             //     $controller = new HomePageController();
             //     $controller->resetPassword();
@@ -55,10 +62,10 @@ class Router
             //     $controller->account();
             // break;
             // connexion à la partie admin
-            // case 'login':
-            //     $controller = new HomePageController();
-            //     $controller->login();
-            // break;
+            case 'login':
+                $controller = new UserController($registerManager, $request, $session, $homePageManager);
+                $controller->login();
+            break;
 
                 // page d'accueil
             default:
