@@ -9,9 +9,9 @@ class HomePageManager
 {
     private $db;
 
-    public function __construct()
+    public function __construct(DbConnect $dbConnect)
     {
-        $this->db = (new DbConnect())->connectToDb();
+        $this->db = $dbConnect->connectToDb();
     }
 
     public function user()

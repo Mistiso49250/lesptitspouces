@@ -13,14 +13,15 @@ class RegisterController
     private $registerManager;
     private $fonction;
     private $request;
-    public function __construct()
+    public function __construct(RegisterManager $registerManager, Request $request, Fonction $fonction, Session $session)
     {
         $this->view = new View('../templates/frontoffice');
-        $this->session = new session();
-        $this->registerManager = new RegisterManager();
+        $this->session = $session;
+        $this->registerManager = $registerManager;
         $this->fonction = new Fonction($_POST);
-        $this->request = new Request();
+        $this->request = $request;
     }
+    
     public function register($post): void
     {
         $token = $this->fonction->str_random(60);

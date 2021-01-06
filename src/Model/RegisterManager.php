@@ -13,9 +13,9 @@ class RegisterManager
     private $fonction;
     private $session;
 
-    public function __construct()
+    public function __construct(DbConnect $dbConnect)
     {
-        $this->db = (new DbConnect())->connectToDb();
+        $this->db = $dbConnect->connectToDb();
         $this->session = new session();
         $this->fonction = new Fonction($_POST);
     }

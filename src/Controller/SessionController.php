@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
-class session
+class SessionController
 {
     // public function __contruct(){
     //     session_start();
