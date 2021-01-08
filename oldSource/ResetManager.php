@@ -43,7 +43,7 @@ class ResetManager
     //         }
 
     //     }else {
-    //         hearder('Location: index.php?action=login');
+    //         header('Location: index.php?action=login');
     //         exit();
     //     }
     // }

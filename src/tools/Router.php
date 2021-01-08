@@ -7,11 +7,10 @@ use Oc\Tools\Request;
 use Oc\Model\ArticleManager;
 use Oc\Controller\ArticleController;
 use Oc\Controller\HomePageController;
-use Oc\Controller\RegisterController;
 use Oc\Controller\UserController;
 use Oc\Model\HomePageManager;
 use Oc\Model\RegisterManager;
-use Oc\Model\ResetManager;
+use Oc\Model\UserManager;
 
 class Router
 {
@@ -27,10 +26,10 @@ class Router
         $action = $this->request->getItem('action');
         $bddConnect = new DbConnect();
         $articleManager = new ArticleManager($bddConnect);
-        $registerManager = new RegisterManager($bddConnect);
         $request = new Request();
         $session = new Session();
         $homePageManager = new HomePageManager($bddConnect);
+        $user = new UserManager($bddConnect);
 
         switch ($action) { // partie front
                 // affichage des articles
@@ -41,29 +40,29 @@ class Router
                 // affichage des nouveaux article
             
             // case 'forgetPassword':
-            //     $controller = new HomePageController();
+            //     $controller = new UserController($request, $session, $homePageManager, $user);
             //     $controller->forgetPassword();
             // break;
             case 'register':
-                $controller = new UserController($registerManager, $request, $session, $homePageManager);
+                $controller = new UserController($request, $session, $homePageManager, $user);
                 $controller->register($_POST);
             break;
             // case 'resetPassword':
-            //     $controller = new HomePageController();
+            //     $controller = new UserController($request, $session, $homePageManager, $user);
             //     $controller->resetPassword();
             // break;
             // case 'changePassword':
-            //     $controller = new HomePageController();
+            //     $controller = new UserController($request, $session, $homePageManager, $user);
             //     $controller->changePassword();
             // break;
             // //connecion au compte utilisateur
             // case 'account':
-            //     $controller = new HomePageController();
+            //     $controller = new UserController($request, $session, $homePageManager, $user);
             //     $controller->account();
             // break;
             // connexion à la partie admin
             case 'login':
-                $controller = new UserController($registerManager, $request, $session, $homePageManager);
+                $controller = new UserController($request, $session, $homePageManager, $user);
                 $controller->login();
             break;
 

@@ -7,6 +7,7 @@ class Request
 {
     private $get;
     private $post;
+    private $files;
     private $token;
     private $userId;
 
@@ -14,19 +15,24 @@ class Request
     {
         $this->get = $_GET;
         $this->post = $_POST;
+        $this->files = $_FILES;
     }
 
     public function getItem($item)
     {
         $action = $this->get[$item] ?? null;
-
         return $action;
     }
 
     public function postItem($item)
     {
         $action = $this->post[$item] ?? null;
+        return $action;
+    }
 
+    public function getFiles($item)
+    {
+        $action = $this->files[$item] ?? null;
         return $action;
     }
 

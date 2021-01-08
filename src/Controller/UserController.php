@@ -8,27 +8,27 @@ use Oc\View\View;
 use Oc\Tools\Request;
 use Oc\Tools\Session;
 use Oc\Tools\Fonction;
+use Oc\Model\UserManager;
 use Oc\Model\ArticleManager;
 use Oc\Model\HomePageManager;
-use Oc\Model\RegisterManager;
 
 class UserController
 {
     private $view;
     private $homePageManager;
     private $session;
-    private $registerManager;
     private $fonction;
     private $request;
+    private $user;
 
-    public function __construct(RegisterManager $registerManager, Request $request, Session $session, HomePageManager $homePageManager)
+    public function __construct(Request $request, Session $session, HomePageManager $homePageManager, UserManager $user)
     {
         $this->view = new View('../templates/frontoffice/');
         $this->session = $session;
         $this->homePageManager = $homePageManager;
-        $this->registerManager = $registerManager;
         $this->fonction = new Fonction($_POST);
         $this->request = $request;
+        $this->user = $user;
     }
 
     public function login(): void
@@ -38,8 +38,8 @@ class UserController
             header('Location: index.php');
             exit();
         }
-        if (!empty($_POST) && !empty($_POST['username']) && !empty($_POST['password'])) {
-            $user = $this->homePageManager->auth(htmlspecialchars($_POST['username'], $_POST['password'], isset($_POST['remember'])));
+        if (!empty($this->request->postItem) && !empty($this->request->postItem['username']) && !empty($this->request->postItem['password'])) {
+            $user = $this->homePageManager->auth(htmlspecialchars($this->request->postItem['username'], $this->request->postItem['password'], isset($this->request->postItem['remember'])));
             if ($user) {
                 $this->session->setFlash('succes', 'vous etes maintenant connecté');
 
@@ -65,8 +65,8 @@ class UserController
                 $this->session->setFlash('danger', 'Tout les champs ne sont pas remplis');
             }
             // else {
-            // $user = $this->registerManager->validation($post['username']);
-            // $userEmail = $this->registerManager->validationEmail($post['email']);
+            // $user = $this->userManager->validation($post['username']);
+            // $userEmail = $this->userManager->validationEmail($post['email']);
             //         if ($utilisateur === false) {
             //             $this->session->setFlash('danger', 'Impossible d\'éffectuer l\'inscription !');
             //         } elseif ($post['username'] === $user) {
@@ -82,7 +82,7 @@ class UserController
             //         } elseif (empty($post['phone']) || !preg_match('#[0][6][- \.?]?([0-9][0-9][- \.?]?){4}$#', $post['phone'])) {
             //             $this->session->setFlash('danger', 'Vous devez rentrer un numéro de téléphone valide');
             //         } else {
-            //         $utilisateur = $this->registerManager->register(
+            //         $utilisateur = $this->userManager->register(
             //             $post['username'],
             //             $post['name'],
             //             $post['adresse'],
@@ -95,7 +95,7 @@ class UserController
             //             $post['email'],
             //             $post['password']
             //         );
-            //             $clientId = $this->registerManager->lastInsertId();
+            //             $clientId = $this->userManager->lastInsertId();
             //             mail($post['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien\n\nhttp://localhost:8000/index.php?action=confirm&id=$clientId&token=$token");
             //             $this->session->setFlash('success', "un email de confirmation vous a été envoyé pour validé votre compte ");
             //             header('Location: index.php');
