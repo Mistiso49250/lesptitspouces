@@ -14,3 +14,4 @@
 
 - Factorisés les templates dans mobilier deco, à première vu, ils ont peu de différences entre eux.
 - Voir pour les autres templates
+- 

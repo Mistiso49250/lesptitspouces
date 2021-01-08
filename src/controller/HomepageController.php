@@ -3,26 +3,38 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
-use Oc\Model\ArticleManager;
-use Oc\View\View;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
-class HomePageController
+use Oc\Model\ArticleManager;
+
+class HomePageController extends AbstractController
 {
-    private $view;
     private $articleManager;
    
     public function __construct(ArticleManager $articleManager)
     {
-        $this->view = new View('../templates/frontoffice/');
         $this->articleManager = $articleManager;
     }
+
    
-    public function homePage(): void
+    /**
+     * @Route("/", name="homepage")
+     */
+    public function homePage(): Response
     {
         $list = $this->articleManager->findAllNouveaute();
- 
-        $this->view->render('frontoffice/homePage', [
+        return $this->render('frontoffice/homePage.html.twig', [
             'list'=>$list
         ]);
+    }
+
+    /**
+     * @Route("/article/{slug}", name="articlepage")
+     */
+    public function articlePage(string $slug): Response
+    {
+        return new Response($slug);
     }
 }
