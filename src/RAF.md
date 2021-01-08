@@ -8,3 +8,9 @@
 - Ne plus utiliser la superglobals $_SESSION directement dans le code, il faut à la place utiliser la classe Session : 
 - Factorisés les templates dans mobilier deco, à première vu, ils ont peu de différences entre eux.
 - Voir pour les autres templates
+
+
+2e 
+
+- Factorisés les templates dans mobilier deco, à première vu, ils ont peu de différences entre eux.
+- Voir pour les autres templates
