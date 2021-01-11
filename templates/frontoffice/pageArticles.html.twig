@@ -1,26 +1,26 @@
 {% extends "/frontoffice/layout.html.twig" %}
 
 {% block head %}
-    <title>Boites à dents de lait</title>
+    <title>{{ titre page }}</title>
 {% endblock %}
 
 {% block content %}
 
     <div class="titrePage">
-        <h1>Boites à dents de lait</h1>
+        <h1>{{ titre }}</h1>
     </div>
 
-    {% for article in articles %}
+    {% for item in articles %}
     <section class="row">
         <div class="col-xs">
             <div class="card">
-                <img src="images/{{ article.image }}" alt="" class="cardImg"></a>
+                <img src="images/{{ item.image }}" alt="" class="cardImg"></a>
                 <div class="cardBlock">
-                    <h4 class="cardTitle">{{ article.titre }} </h4>
-                    <a href="index.php?action={{ article.id_article }}">
-                    <p class="cardArticleText">{{ article.extrait | nl2br }}</p>
-                    <p class="cardPrice">{{ article.prix }}</p>
-                    <a class="btn btn-info btn-rouded mb-4" href="">Ajouter au panier</a>
+                    <h4 class="cardTitle">{{ item.titre }} </h4>
+                    <a href="index.php?action={{ item.item }}">
+                    <p class="cardArticleText">{{ item.extrait | nl2br }}</p>
+                    <p class="cardPrice">{{ item.prixTTC }}</p>
+                    <a class="btn btn-info btn-rounded mb-4" href="">Ajouter au panier</a>
                 </div>
             </div>
         </div>
