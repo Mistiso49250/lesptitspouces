@@ -43,11 +43,12 @@ class UserController extends AbstractController
         //     header('Location: index.php');
         //     exit();
         // }
-        // if (!empty($this->request->postItem) && !empty($request->request->get('username') && !empty($this->request->postItem['password'])) {
-        //     $user = $this->user->auth(htmlspecialchars($this->request->postItem['username'], $this->request->postItem['password'], isset($this->request->postItem['remember'])));
+        // if (!empty($this->request->postItem) && !empty($request->request->get('username') && !empty($request->request->get('password'))) {
+        //     $user = $this->user->auth(htmlspecialchars($request->request->get('username'), $request->request->get('password'), isset($request->request->get('remember'))));
         //     if ($user) {
         //         $this->session->setFlash('succes', 'vous etes maintenant connecté');
 
+        //         return $this->redirectToRoute('homepage');
         //         header('Location: index.php?login=1');
         //         exit();
         //     }
@@ -74,39 +75,41 @@ class UserController extends AbstractController
                 $this->session->setFlash('danger', 'Tout les champs ne sont pas remplis');
             }
             // else {
-            // $user = $this->userManager->validation($post['username']);
-            // $userEmail = $this->userManager->validationEmail($post['email']);
+            // $user = $this->userManager->validation($request->request->get('username'));
+            // $userEmail = $this->userManager->validationEmail($request->request->get('email'));
             //         if ($utilisateur === false) {
             //             $this->session->setFlash('danger', 'Impossible d\'éffectuer l\'inscription !');
-            //         } elseif ($post['username'] === $user) {
+            //         } elseif ($request->request->get('username') === $user) {
             //             $this->session->setFlash('danger', 'Ce nom est déjà pris');
-            //         } elseif (empty($post['email']) || !filter_var($post['email'], FILTER_VALIDATE_EMAIL)) {
+            //         } elseif (empty($request->request->get('email')) || !filter_var($request->request->get('email'), FILTER_VALIDATE_EMAIL)) {
             //             $this->session->setFlash('danger', 'Votre email n\'est pas valide');
-            //         } elseif ($post['email'] === $userEmail) {
+            //         } elseif ($request->request->get('email') === $userEmail) {
             //             $this->session->setFlash('danger', 'Cet email est déjà utilisé pour un autre compte');
-            //         } elseif (empty($post['password'])) {
+            //         } elseif (empty($request->request->get('password'))) {
             //             $this->session->setFlash('danger', 'Vous devez rentrer un mot de passe valide');
-            //         } elseif ($post['password'] !== $post['passwordConfirm']) {
+            //         } elseif ($request->request->get('password') !== $post['passwordConfirm']) {
             //             $this->session->setFlash('danger', 'Vos mot de passe ne corresponde pas');
-            //         } elseif (empty($post['phone']) || !preg_match('#[0][6][- \.?]?([0-9][0-9][- \.?]?){4}$#', $post['phone'])) {
+            //         } elseif (empty($request->request->get('phone')) || !preg_match('#[0][6][- \.?]?([0-9][0-9][- \.?]?){4}$#', $post['phone'])) {
             //             $this->session->setFlash('danger', 'Vous devez rentrer un numéro de téléphone valide');
             //         } else {
             //         $utilisateur = $this->userManager->register(
-            //             $post['username'],
-            //             $post['name'],
-            //             $post['adresse'],
-            //             $post['adress_supp'],
-            //             $post['postal'],
-            //             $post['ville'],
-            //             $post['pays'],
-            //             $post['phone'],
-            //             $post['societe'],
-            //             $post['email'],
-            //             $post['password']
+            //             $request->request->get('username'),
+            //             $request->request->get('name'),
+            //             $request->request->get('adresse'),
+            //             $request->request->get('adress_supp'),
+            //             $request->request->get('postal'),
+            //             $request->request->get('ville'),
+            //             $request->request->get('pays'),
+            //             $request->request->get('phone'),
+            //             $request->request->get('societe'),
+            //             $request->request->get('email'),
+            //             $request->request->get('password')
             //         );
             //             $clientId = $this->userManager->lastInsertId();
-            //             mail($post['email'], 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien\n\nhttp://localhost:8000/index.php?action=confirm&id=$clientId&token=$token");
+            //             mail($request->request->get('email'), 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien\n\nhttp://localhost:8000/index.php?action=confirm&id=$clientId&token=$token");
             //             $this->session->setFlash('success', "un email de confirmation vous a été envoyé pour validé votre compte ");
+            //             
+            //             return $this->redirectToRoute('homepage');
             //             header('Location: index.php');
             //             exit();
             //         }
@@ -136,9 +139,11 @@ class UserController extends AbstractController
      */
     public function forgetPassword(): Response
     {
-        // if (!empty($_POST) && !empty($_POST['email'])) {
-        //     if ($auth-- > resetPassword($db, $_POST['email'])) {
+        // if (!empty($request->request->get('')) && !empty($request->request->get('email'))) {
+        //     if ($auth-- > resetPassword($db, $request->request->get('email'))) {
         //         $_SESSION['flash']['success'] = 'les instruction du rappel de mot de passe vous ont été envoyé par email';
+        //         
+        //         return $this->redirectToRoute('login');
         //         header('Location: login.php');
         //     } else {
         //         $_SESSION['flash']['dager'] = 'aucun compte ne correspond a cet adresse';
@@ -158,11 +163,11 @@ class UserController extends AbstractController
         // }
 
         // if (!empty($_POST)) {
-        //     if (empty(['password']) || $_POST['password'] != $_POST['passwordConfirm']) {
+        //     if (empty(['password']) || $request->request->get('password') != $request->request->get('passwordConfirm')) {
         //         $_SESSION['flash']['danger'] = "Les mots de passe ne correspondent pas";
         //     } else {
         //         $user_id = $_SESSION['auth']->id;
-        //         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        //         $password = password_hash($request->request->get('password'), PASSWORD_BCRYPT);
         //         $req = $pdo->prepare('update client set password= ? where id = ?')->execute(['password', $user_id]);
         //         $req->execute([$password]);
         //         $_SESSION['flash']['success'] = "votre mot de passe a bien été mis a jour";

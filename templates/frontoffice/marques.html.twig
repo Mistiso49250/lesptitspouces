@@ -1,16 +1,20 @@
 {% extends "/frontoffice/layout.html.twig" %}
 
 {% block head %}
-	<title>{{ titre page }}</title>
+    <title>{{ titre page }}</title>
 {% endblock %}
 
 {% block content %}
 
-	<div class="titrePage">
-		<h1>{{ titre }}</h1>
-	</div>
+    <div class="titreMarque">
+        <h1>Les marques qui nous fond confiance</h1>
+    </div>
 
-	{% for item in marques %}
+    <div class="presentationMarque">
+        <p>Retrouver toutes les marques qui travaillent avec nous comme Moulin Roty, Vilac, L'oiseau bateau et bien d'autres.</p>
+    </div>
+
+    {% for item in marques %}
 		<div class="row row-cols-1 row-cols-md-2 g-4">
 			<div class="col">
 				<div class="card border-info">
@@ -24,7 +28,7 @@
         </div>
 	{% endfor %}
 
-	{# Pagination #}
+    {# Pagination #}
 	<div class="d-flex justify-content-between my4">
 		{% if data.pagePrecedente !==0 %}
 			<a href="index.php?action=album&page={{ data.pagePrecedente }}" class="btn btn-info m-3">&laquo;
