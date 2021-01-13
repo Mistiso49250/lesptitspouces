@@ -137,7 +137,7 @@ class UserController extends AbstractController
     /**
      * @Route("/forgetpassword", name="forgetpassword")
      */
-    public function forgetPassword(): Response
+    public function forgetPassword(Request $request): Response
     {
         // if (!empty($request->request->get('')) && !empty($request->request->get('email'))) {
         //     if ($auth-- > resetPassword($db, $request->request->get('email'))) {
@@ -155,7 +155,7 @@ class UserController extends AbstractController
     /**
      * @Route("/account", name="account")
      */
-    public function account(): Response
+    public function account(Request $request): Response
     {
         // if (!isset($_SESSION['auth'])) {
         //     $_SESSION['flash']['danger'] = "vous n'avez pas le droit d'accéder a cette page";
