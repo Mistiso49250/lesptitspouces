@@ -24,7 +24,7 @@
         {% for article in list %}
             <div class="col-md-3 mb-4">
                     <div class="card text-center h-100" style="width: 15rem;">
-                        <a href="index.php?action=article&id={{ article.id_article }}">
+                        <a href="{{ path('article', {'id': article.id_article}) }} ">
                         <img src="images/{{ article.image }}" alt="" class="cardImgTop"></a>
                         <div class="cardBlock">
                             <h4 class="cardTitle">{{ article.titre }} </h4>

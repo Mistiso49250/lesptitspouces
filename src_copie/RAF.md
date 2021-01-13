@@ -14,4 +14,19 @@
 
 - Factorisés les templates dans mobilier deco, à première vu, ils ont peu de différences entre eux.
 - Voir pour les autres templates
-- 
+
+
+3
+
+- Changer les href en Path
+- utiliser les request dans les controllers
+
+liste Request
+$request->query->get('foo'); // $_GET
+
+$request->request->get('bar', 'valeur par défaut si bar n'esiste pas'); // $_POST
+
+$request->server->get('HTTP_HOST'); // $_SERVER
+
+$request->files->get('foo'); // $_FILES
+

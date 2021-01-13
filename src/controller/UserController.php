@@ -4,66 +4,72 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
-use Oc\Tools\Request;
-use Oc\Tools\Session;
-use Oc\Tools\Fonction;
-use Oc\Model\UserManager;
-use Oc\Model\ArticleManager;
+// use Oc\Tools\Session;
+// use Oc\Model\UserManager;
+
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class UserController extends AbstractController
 {
-    private $session;
-    private $fonction;
+    // private $session;
+    // private $user;
     private $request;
-    private $user;
 
-    public function __construct(Request $request, Session $session, UserManager $user)
+    // public function __construct(Request $request, Session $session, UserManager $user)
+    // {
+    //     $this->session = $session;
+    //     $this->request = $request;
+    //     $this->user = $user;
+    // }
+    public function __construct()
     {
-        $this->session = $session;
-        $this->fonction = new Fonction($_POST);
-        $this->request = $request;
-        $this->user = $user;
+        // $this->request = $request;
     }
 
     /**
-     * @Route("/", name="login")
+     * @Route("/login", name="login")
      */
-    public function login(): Response
+    public function login(Request $request): Response
     {
-        $messageError = null;
-        if ($this->user->user() !== null) {
-            header('Location: index.php');
-            exit();
+        if($request->getMethod() === 'POST'){
+            // dd($request->request->all());
+            return $this->redirectToRoute('homepage');
         }
-        if (!empty($this->request->postItem) && !empty($this->request->postItem['username']) && !empty($this->request->postItem['password'])) {
-            $user = $this->user->auth(htmlspecialchars($this->request->postItem['username'], $this->request->postItem['password'], isset($this->request->postItem['remember'])));
-            if ($user) {
-                $this->session->setFlash('succes', 'vous etes maintenant connecté');
+        // $messageError = null;
+        // if ($this->user->user() !== null) {
+        //     header('Location: index.php');
+        //     exit();
+        // }
+        // if (!empty($this->request->postItem) && !empty($request->request->get('username') && !empty($this->request->postItem['password'])) {
+        //     $user = $this->user->auth(htmlspecialchars($this->request->postItem['username'], $this->request->postItem['password'], isset($this->request->postItem['remember'])));
+        //     if ($user) {
+        //         $this->session->setFlash('succes', 'vous etes maintenant connecté');
 
-                header('Location: index.php?login=1');
-                exit();
-            }
-            $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
-        }
+        //         header('Location: index.php?login=1');
+        //         exit();
+        //     }
+        //     $this->session->setFlash('danger', 'identifiant ou de passe incorrect');
+        // }
 
-        return $this->render('frontoffice/login', ['messageError' => $messageError]);
+        return $this->render('frontoffice/login.html.twig', [
+            'messageError' => 'toto'
+        ]);
     }
 
     /**
-     * @Route("/", name="register")
+     * @Route("/register", name="register")
      */
-    public function register($post): Response
+    public function register(Request $request): Response
     {
-        $token = $this->fonction->str_random(60);
+        $token = 'toto'; // $this->fonction->str_random(60);
         $clientId = null;
-        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+        if ($request->server->get('HTTP_HOST')) {
             if (
-                empty($post['username']) || empty($post['name']) || empty($post['adresse']) || empty($post['adress_supp']) ||
-                empty($post['postal']) || empty($post['ville']) || empty($post['pays']) || empty($post['societe']) ||
-                !preg_match('/^[a-zA-Zéèàï0-9._]+$/', $post['username'])
+                empty($request->request->all()) ||
+                !preg_match('/^[a-zA-Zéèàï0-9._]+$/', $request->request->get('username'))
             ) {
                 $this->session->setFlash('danger', 'Tout les champs ne sont pas remplis');
             }
@@ -110,13 +116,13 @@ class UserController extends AbstractController
         // $this->session->setFlash('success', "toto");
         // $this->session->setFlash('danger', "tata");
         // var_dump($this->session->getFlashes());die();
-        return $this->render('frontoffice/register', [
+        return $this->render('frontoffice/register.html.twig', [
             'messages' => $this->session->hasFlashes() ? $this->session->getFlashes() : null,
         ]);
     }
 
     /**
-     * @Route("/", name="logout")
+     * @Route("/logout", name="logout")
      */
     public function logout(): Response
     {
@@ -126,7 +132,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("/", name="forgetpassword")
+     * @Route("/forgetpassword", name="forgetpassword")
      */
     public function forgetPassword(): Response
     {
@@ -138,11 +144,11 @@ class UserController extends AbstractController
         //         $_SESSION['flash']['dager'] = 'aucun compte ne correspond a cet adresse';
         //     }
         // }
-        return $this->render('frontoffice/forgetPassword');
+        return $this->render('frontoffice/forgetPassword.html.twig');
     }
 
     /**
-     * @Route("/", name="account")
+     * @Route("/account", name="account")
      */
     public function account(): Response
     {
@@ -162,22 +168,22 @@ class UserController extends AbstractController
         //         $_SESSION['flash']['success'] = "votre mot de passe a bien été mis a jour";
         //     }
         // }
-        return $this->render('frontoffice/account');
+        return $this->render('frontoffice/account.html.twig');
     }
 
     /**
-     * @Route("/", name="resetpassword")
+     * @Route("/resetpassword", name="resetpassword")
      */
     public function resetPassword(): Response
     {
-        return $this->render('frontoffice/resetPassword');
+        return $this->render('frontoffice/resetPassword.html.twig');
     }
 
     /**
-     * @Route("/", name="changepassword")
+     * @Route("/changepassword", name="changepassword")
      */
     public function changePassword(): Response
     {
-        return $this->render('frontoffice/changePassword');
+        return $this->render('frontoffice/changePassword.html.twig');
     }
 }

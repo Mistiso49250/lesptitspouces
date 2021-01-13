@@ -19,13 +19,15 @@ class ArticleController extends AbstractController
 
     // affiche les informations d'un article
     /**
-     * @Route("/article/{slug}", name="article")
+     * @Route("/article/{id}", name="article")
+     * Route("/article/{slug}", name="article")
      */
-    public function article(int $idArticle): Response
+    public function article(int $id): Response
+    // public function article(string $slug): Response
     {
-        $article = $this->articleManager->findArticle($idArticle);
-        return $this->render('frontoffice/article', [
-            'article'=>$article
+        $article = $this->articleManager->findArticle($id);
+        return $this->render('frontoffice/article.html.twig', [
+            'article'=>$article,
         ]);
     }
 }
