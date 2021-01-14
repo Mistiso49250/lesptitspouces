@@ -48,15 +48,17 @@ class UserController extends AbstractController
             // exit();
         }
         if (!empty($request->request->get('')) && !empty($request->request->get('username') && !empty($request->request->get('password'))) {
-            $user = $this->user->auth(htmlspecialchars($request->request->get('username'), $request->request->get('password'), isset($request->request->get('remember'))));
+            $user = $this->user->auth(htmlspecialchars($request->request->get('username'), 
+                        $request->request->get('password'), isset($request->request->get('remember'))));
+                        
             if ($user) {
-                $this->addFlash('succes', 'vous etes maintenant connecté');
+                $this->addFlash('succes', 'Vous êtes maintenant connecté');
 
                 return $this->redirectToRoute('homepage');
                 // header('Location: index.php?login=1');
                 // exit();
             }
-            $this->addFlash('error', 'identifiant ou de passe incorrect');
+            $this->addFlash('error', 'Identifiant ou de passe incorrect');
         }
 
         return $this->render('frontoffice/login.html.twig', [
@@ -76,25 +78,25 @@ class UserController extends AbstractController
                 empty($request->request->all()) ||
                 !preg_match('/^[a-zA-Zéèàï0-9._]+$/', $request->request->get('username'))
             ) {
-                $this->$this->addFlash('error', 'Tout les champs ne sont pas remplis');
+                $this->addFlash('error', 'Tout les champs ne sont pas remplis');
             }
             // else {
             // $user = $this->userManager->validation($request->request->get('username'));
             // $userEmail = $this->userManager->validationEmail($request->request->get('email'));
             //         if ($utilisateur === false) {
-            //             $this->$this->addFlash('error', 'Impossible d\'éffectuer l\'inscription !');
+            //             $this->addFlash('error', 'Impossible d\'éffectuer l\'inscription !');
             //         } elseif ($request->request->get('username') === $user) {
-            //             $this->$this->addFlash('error', 'Ce nom est déjà pris');
+            //             $this->addFlash('error', 'Ce nom est déjà pris');
             //         } elseif (empty($request->request->get('email')) || !filter_var($request->request->get('email'), FILTER_VALIDATE_EMAIL)) {
-            //             $this->$this->addFlash('error', 'Votre email n\'est pas valide');
+            //             $this->addFlash('error', 'Votre email n\'est pas valide');
             //         } elseif ($request->request->get('email') === $userEmail) {
-            //             $this->$this->addFlash('error', 'Cet email est déjà utilisé pour un autre compte');
+            //             $this->addFlash('error', 'Cet email est déjà utilisé pour un autre compte');
             //         } elseif (empty($request->request->get('password'))) {
-            //             $this->$this->addFlash('error', 'Vous devez rentrer un mot de passe valide');
+            //             $this->addFlash('error', 'Vous devez rentrer un mot de passe valide');
             //         } elseif ($request->request->get('password') !== $post['passwordConfirm']) {
-            //             $this->$this->addFlash('error', 'Vos mot de passe ne corresponde pas');
+            //             $this->addFlash('error', 'Vos mot de passe ne corresponde pas');
             //         } elseif (empty($request->request->get('phone')) || !preg_match('#[0][6][- \.?]?([0-9][0-9][- \.?]?){4}$#', $post['phone'])) {
-            //             $this->$this->addFlash('error', 'Vous devez rentrer un numéro de téléphone valide');
+            //             $this->addFlash('error', 'Vous devez rentrer un numéro de téléphone valide');
             //         } else {
             //         $utilisateur = $this->userManager->register(
             //             $request->request->get('username'),
@@ -111,7 +113,7 @@ class UserController extends AbstractController
             //         );
             //             $clientId = $this->userManager->lastInsertId();
             //             mail($request->request->get('email'), 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien\n\nhttp://localhost:8000/index.php?action=confirm&id=$clientId&token=$token");
-            //             $this->$this->addFlash('success', "un email de confirmation vous a été envoyé pour validé votre compte ");
+            //             $this->addFlash('success', "un email de confirmation vous a été envoyé pour validé votre compte ");
             //             
             //             return $this->redirectToRoute('homepage');
             //             header('Location: index.php');
@@ -134,6 +136,7 @@ class UserController extends AbstractController
     public function logout(): Response
     {
         $this->session->logout();
+        $this->addFlash('succes', 'Vous êtes maintenant déconnecté');
         return $this->redirectToRoute('homepage');
         // header('Location: index.php');
         // exit();

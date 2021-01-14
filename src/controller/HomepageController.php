@@ -3,11 +3,11 @@ declare(strict_types=1);
 
 namespace Oc\Controller;
 
+use Oc\Model\ArticleManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
 
-use Oc\Model\ArticleManager;
+use Symfony\Component\Routing\Annotation\Route;
 
 class HomePageController extends AbstractController
 {
@@ -29,5 +29,4 @@ class HomePageController extends AbstractController
             'list'=>$list
         ]);
     }
-
 }

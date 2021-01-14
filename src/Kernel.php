@@ -19,7 +19,7 @@ class Kernel extends BaseKernel
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
         ];
 
-        if ($this->getEnvironment() == 'dev') {
+        if ($this->getEnvironment() === 'dev') {
             $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
