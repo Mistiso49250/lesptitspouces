@@ -11,24 +11,13 @@
        <h4>S'inscrire</h4>
          
 
-        <!-- gestion des notifications -->
-        
-        {% for message in messages %}
-        <ul class="alert alert-{{ message.type }}">
-            <li>{{ message.message }}</li>
-        </ul>
+        <!-- notification message d'erreurs -->
+        {% for message in app.flashes('error') %}
+            <h2 class="danger"> {{ message }} </h2>
         {% endfor %}
-
-        {# {% for message in messageSuccess %}
-        <ul class="alert alert-success">
-            <li>{{ message }}</li>
-        </ul>
+        {% for message in app.flashes('success') %}
+            <h2 class="success"> {{ message }} </h2>
         {% endfor %}
-        {% for message in messageError %}
-        <ul class="alert alert-danger">
-            <li>{{ message }}</li>
-        </ul>
-        {% endfor %} #}
 
          
         <!-- Formulaire d'inscription -->

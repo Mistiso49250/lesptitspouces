@@ -138,7 +138,8 @@ class UserManager
         
     // }
 
-    // public function reset()
+
+    // public function updatePassword()
     // {
     //     // verif info correct
     //     $user = $this->homePage->getUsers($_GET['id'], $_GET['token']);
