@@ -41,25 +41,25 @@ class UserController extends AbstractController
             // dd($request->request->all());
             return $this->redirectToRoute('homepage');
         }
-        $messageError = null;
-        if ($this->user->user() !== null) {
-            return $this->redirectToRoute('homepage');
-            // header('Location: index.php');
-            // exit();
-        }
-        if (!empty($request->request->get('')) && !empty($request->request->get('username') && !empty($request->request->get('password'))) {
-            $user = $this->user->auth(htmlspecialchars($request->request->get('username'), 
-                        $request->request->get('password'), isset($request->request->get('remember'))));
-                        
-            if ($user) {
-                $this->addFlash('succes', 'Vous êtes maintenant connecté');
+        // $messageError = null;
+        // if ($this->user->user() !== null) {
+        //     return $this->redirectToRoute('homepage');
+        //     // header('Location: index.php');
+        //     // exit();
+        // }
+        // if (!empty($request->request->get('')) && !empty($request->request->get('username') && !empty($request->request->get('password'))) {
+        //     $user = $this->user->auth(htmlspecialchars($request->request->get('username'), 
+        //                 $request->request->get('password'), isset($request->request->get('remember'))));
 
-                return $this->redirectToRoute('homepage');
-                // header('Location: index.php?login=1');
-                // exit();
-            }
-            $this->addFlash('error', 'Identifiant ou de passe incorrect');
-        }
+        //     if ($user) {
+        //         $this->addFlash('succes', 'Vous êtes maintenant connecté');
+
+        //         return $this->redirectToRoute('homepage');
+        //         // header('Location: index.php?login=1');
+        //         // exit();
+        //     }
+        //     $this->addFlash('error', 'Identifiant ou de passe incorrect');
+        // }
 
         return $this->render('frontoffice/login.html.twig', [
             'messageError' => 'toto'
@@ -166,7 +166,7 @@ class UserController extends AbstractController
     public function account(Request $request): Response
     {
         // if (!isset($_SESSION['auth'])) {
-            $this->addFlash('error', "Vous n'avez pas le droit d'accéder a cette page");
+            // $this->addFlash('error', "Vous n'avez pas le droit d'accéder a cette page");
         //     exit();
         // }
 
