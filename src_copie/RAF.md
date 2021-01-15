@@ -30,3 +30,13 @@ $request->server->get('HTTP_HOST'); // $_SERVER
 
 $request->files->get('foo'); // $_FILES
 
+
+4
+Modifier les tables dans heidi
+faire le userRepository
+terminer les find dans l'articleRepository
+gerer les limit dans le findBy dans l'articleRepository
+ranger les templates dans des dossiers correspondant
+finir la homePage et article
+creer un article dont le prix est 9,99 et doit bien afficher le prix
+

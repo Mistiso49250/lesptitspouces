@@ -3,43 +3,26 @@ declare(strict_types=1);
 
 namespace Oc\Model;
 
-use Oc\Tools\DbConnect;
+use Oc\Model\Repository\ArticleRepository;
 
 class ArticleManager
 {
-    private $db;
+    private $articleRepository;
 
-    public function __construct(DbConnect $dbConnect)
+    public function __construct(ArticleRepository $articleRepository)
     {
-        $this->db = $dbConnect->connectToDb();
+        $this->articleRepository = $articleRepository;
     }
 
     // récupère les informations d'un article
     public function findArticle(int $idArticle) : ?array
     {
-        $req = $this->db->prepare('SELECT * from articles where id_article = :idarticle');
-        $req->execute(['idarticle'=>$idArticle]);
-        $article = $req->fetch();
-
-        return $article === false ? null : $article;
+        return $this->articleRepository->find($idArticle);
     }
-
-    // récupère les informations d'un nouvel article
-    // public function findNouveaute(int $idArticle) : ?array
-    // {
-    //     $req = $this->db->prepare('SELECT id_article from articles where newArticle = 1');
-    //     $req->execute(['idarticle'=>$idArticle]);
-    //     $articles = $req->fetch();
-
-    //     return $articles === false ? null : $articles;
-    // }
 
     // recupère les nouveaux articles pour la homePage
     public function findAllNouveaute() : array
     {
-        $req = $this->db->prepare('SELECT * FROM articles where newarticle = 1');
-        $req->execute();
-
-        return $req->fetchAll();
+        return $this->articleRepository->findBy(['newarticle'=> 1]);
     }
 }
