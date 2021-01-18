@@ -12,12 +12,12 @@ final class ArticleRepository
 
     private function makeBinding(array $criteria): string
     {
-        if(empty($criteria)){
+        if (empty($criteria)) {
             throw new \Exception('les critères d\'un findOneBy ou findBy ne peuvent pas être vide');
         }
         
         $binding = [];
-        foreach(array_keys($criteria) as $key){
+        foreach (array_keys($criteria) as $key) {
             $binding[] = "{$key} = :{$key}";
         }
     
@@ -27,7 +27,7 @@ final class ArticleRepository
     private function insertArticle(array $article)
     {
         $create = [];
-        foreach(array_keys($article) as $key){
+        foreach (array_keys($article) as $key) {
             $create[] = "{$key} = :{$key}";
         }
     
@@ -37,7 +37,7 @@ final class ArticleRepository
     private function updateArticle(array $article)
     {
         $update = [];
-        foreach(array_keys($article) as $key){
+        foreach (array_keys($article) as $key) {
             $update[] = "{$key} = :{$key}";
         }
     
@@ -101,4 +101,3 @@ final class ArticleRepository
         return false;
     }
 }
-

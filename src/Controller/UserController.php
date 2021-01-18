@@ -7,11 +7,11 @@ namespace Oc\Controller;
 // use Oc\Tools\Session;
 use Oc\Model\UserManager;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Routing\Annotation\Route;
 
 class UserController extends AbstractController
 {
@@ -37,7 +37,7 @@ class UserController extends AbstractController
      */
     public function login(Request $request): Response
     {
-        if($request->getMethod() === 'POST'){
+        if ($request->getMethod() === 'POST') {
             // dd($request->request->all());
             return $this->redirectToRoute('homepage');
         }
@@ -48,7 +48,7 @@ class UserController extends AbstractController
         //     // exit();
         // }
         // if (!empty($request->request->get('')) && !empty($request->request->get('username') && !empty($request->request->get('password'))) {
-        //     $user = $this->user->auth(htmlspecialchars($request->request->get('username'), 
+        //     $user = $this->user->auth(htmlspecialchars($request->request->get('username'),
         //                 $request->request->get('password'), isset($request->request->get('remember'))));
 
         //     if ($user) {
@@ -114,7 +114,7 @@ class UserController extends AbstractController
             //             $clientId = $this->userManager->lastInsertId();
             //             mail($request->request->get('email'), 'Confirmation de votre compte', "Afin de valider votre compte, merci de cliquer sur ce lien\n\nhttp://localhost:8000/index.php?action=confirm&id=$clientId&token=$token");
             //             $this->addFlash('success', "un email de confirmation vous a été envoyé pour validé votre compte ");
-            //             
+            //
             //             return $this->redirectToRoute('homepage');
             //             header('Location: index.php');
             //             exit();
@@ -149,8 +149,8 @@ class UserController extends AbstractController
     {
         // if (!empty($request->request->get('')) && !empty($request->request->get('email'))) {
         //     if ($auth->resetPassword($db, $request->request->get('email'))) {
-                // $this->addFlash('succes', 'les instruction du rappel de mot de passe vous ont été envoyé par email');
-        //         
+        // $this->addFlash('succes', 'les instruction du rappel de mot de passe vous ont été envoyé par email');
+        //
         //         return $this->redirectToRoute('login');
         //         header('Location: login.php');
         //     } else {
@@ -166,13 +166,13 @@ class UserController extends AbstractController
     public function account(Request $request): Response
     {
         // if (!isset($_SESSION['auth'])) {
-            // $this->addFlash('error', "Vous n'avez pas le droit d'accéder a cette page");
+        // $this->addFlash('error', "Vous n'avez pas le droit d'accéder a cette page");
         //     exit();
         // }
 
         // if (!empty($_POST)) {
         //     if (empty(['password']) || $request->request->get('password') != $request->request->get('passwordConfirm')) {
-            // $this->addFlash('error', "Les mots de passe ne correspondent pas");
+        // $this->addFlash('error', "Les mots de passe ne correspondent pas");
         //     } else {
         //         $user_id = $_SESSION['auth']->id;
         //         $password = password_hash($request->request->get('password'), PASSWORD_BCRYPT);

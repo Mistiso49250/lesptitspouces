@@ -12,12 +12,12 @@ final class UserRepository
 
     private function makeBinding(array $criteria): string
     {
-        if(empty($criteria)){
+        if (empty($criteria)) {
             throw new \Exception('les critères d\'un findOneBy ou findBy ne peuvent pas être vide');
         }
         
         $binding = [];
-        foreach(array_keys($criteria) as $key){
+        foreach (array_keys($criteria) as $key) {
             $binding[] = "{$key} = :{$key}";
         }
     
@@ -64,4 +64,3 @@ final class UserRepository
         return false;
     }
 }
-
