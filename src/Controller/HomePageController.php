@@ -24,7 +24,7 @@ class HomePageController extends AbstractController
      */
     public function homePage(): Response
     {
-        $list = $this->articleManager->findAllNouveaute();
+        $list = $this->articleManager->AllNouveaute();
         return $this->render('frontoffice/homePage.html.twig', [
             'list'=>$list
         ]);

@@ -15,14 +15,39 @@ class ArticleManager
     }
 
     // récupère les informations d'un article
-    public function findArticle(int $idArticle) : ?array
+    public function Article(int $idArticle) : ?array
     {
         return $this->articleRepository->find($idArticle);
     }
 
     // recupère les nouveaux articles pour la homePage
-    public function findAllNouveaute() : array
+    public function AllNouveaute() : array
     {
         return $this->articleRepository->findBy(['newarticle'=> 1]);
+    }
+
+    public function create()
+    {
+        return $this->articleRepository->create(['titre'=>':titre', 'contenu_article'=>':contenu_article',
+                     'extrait'=>':extrait', 'prixTTC'=>':prixTTC', 'slug'=>':slug', 'newarticle'=>1]);
+    }
+
+    public function uniqImg()
+    {
+        $req = $this->db->prepare('INSERT into chapitre (dateImg) values (now())');
+        $req->execute();
+
+        return $req->fetchAll();
+    }
+
+    public function update()
+    {
+        return $this->articleRepository->update(['titre'=>':titre', 'contenu_article'=>':contenu_article',
+        'extrait'=>':extrait', 'prixTTC'=>':prixTTC', 'slug'=>':slug', 'newarticle'=>1]);
+    }
+
+    public function delete()
+    {
+        return $this->articleRepository->delete([]);
     }
 }

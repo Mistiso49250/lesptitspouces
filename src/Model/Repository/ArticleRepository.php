@@ -24,6 +24,26 @@ final class ArticleRepository
         return implode(' and ', $binding);
     }
 
+    private function insertArticle(array $article)
+    {
+        $create = [];
+        foreach(array_keys($article) as $key){
+            $create[] = "{$key} = :{$key}";
+        }
+    
+        return implode(' and ', $create);
+    }
+
+    private function updateArticle(array $article)
+    {
+        $update = [];
+        foreach(array_keys($article) as $key){
+            $update[] = "{$key} = :{$key}";
+        }
+    
+        return implode(' and ', $update);
+    }
+
     public function __construct(DbConnect $dbConnect)
     {
         $this->db = $dbConnect->connectToDb();
@@ -59,16 +79,25 @@ final class ArticleRepository
 
     public function create(array $article): bool
     {
-        return false ;
+        $create = $this->insertArticle($article);
+        $req = $this->db->prepare("INSERT into article {$create}");
+        $newArticle = $req->execute($article);
+
+        return $newArticle;
     }
 
     public function update(array $article): bool
     {
-        return false;
+        $update = $this->updateArticle($article);
+        $req = $this->db->prepare("UPDATE chapitre set {$update}");
+        $updateArticle = $req->execute([$article]);
+        return $updateArticle;
     }
 
     public function delete(array $article): bool
     {
+        $req = $this->db->prepare('DELETE from chapitre where _article = :id');
+
         return false;
     }
 }
