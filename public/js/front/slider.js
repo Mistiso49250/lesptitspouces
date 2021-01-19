@@ -2,7 +2,6 @@ class Slider {
     constructor(tabImages, sliderImageId, timer) {
         this.tabImages = tabImages;
         this.tagImageId = document.getElementById(sliderImageId);
-        this.boutonId = document.getElementById(play);
         this.timerId = document.getElementById(timer);
         this.nextId = document.getElementById("circleRight");
         this.nextId.style.cursor = "pointer";
@@ -19,7 +18,6 @@ class Slider {
         //.bind(valeur) permet de créer une fonction où this a la valeur voulue
         this.precId.addEventListener('click', () => this.prec());
         document.addEventListener('keydown', (event) => this.pad(event));
-        this.boutonId.addEventListener('click', () => this.playPause());
         this.playPause();
         
     }

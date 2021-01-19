@@ -1,28 +1,50 @@
 {% extends "/frontoffice/layout.html.twig" %}
 
 {% block head %}
-<title>{{ article.titre }}</title>
+	<title>{{ article.titre }}</title>
 {% endblock %}
 
 {% block content %}
 
-<div class="container-fluid row mb-4">
-        <img src="images/{{ article.image }}" alt="" class="img-fluid">
-        <div class="infoProduit">
-            <div class="titreArticle">
-                <h2>{{ article.titre }}</h2>
-                {{ article.contenu_article }}
-            </div>
-            <div class="prixArticle">
-                <span class="prix">{{ article.prixTTC }} </span>
-            </div>
-            {# <div class="action">
-                 {{ article.stock }} 
-                 {{ article.quantité }} 
-                <button type="submit" title="ajouter au panier"></button>
-            </div> #}
+	<div class="container-fluid row mb-4">
+		<img src="images/{{ article.image }}" alt="" class="img-fluid">
+		<div class="infoProduit">
+			<div class="titreArticle">
+				<h2>{{ article.titre }}</h2>
+				{{ article.extrait }}
+			</div>
+			<div class="prixArticle">
+				<span class="prix">{{ article.prixTTC }}
+					€</span>
+				<p>TTC</p>
+			</div>
+			{# <div class="action">
+			     {{ article.stock }} 
+			     {{ article.quantité }} 
+			    <button type="submit" title="ajouter au panier"></button>
+			</div> #}
+		</div>
+	</div>
+
+	<div
+		class="descritpion">
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item" role="presentation">
+				<a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab" aria-controls="description" aria-selected="true">Déscription</a>
+			</li>
+			<li class="nav-item" role="presentation">
+				<a class="nav-link" id="detail-tab" data-toggle="tab" href="#detail" role="tab" aria-controls="detail" aria-selected="false">Détail</a>
+			</li>
+		</ul>
+
+		<!-- Tab panes -->
+        <div class="tab-content">
+            <div class="tab-pane active" id="description" role="tabpanel" aria-labelledby="description-tab">{{ article.contenu_article | nl2br }}</div>
+            <div class="tab-pane" id="detail" role="tabpanel" aria-labelledby="detail-tab">{{ article.detail | nl2br }}</div>
         </div>
-</div>
+
+	</div>
 
 
 {% endblock %}

@@ -2,7 +2,7 @@ class marquesSlider{
     constructor(tabImages, marquesSliderImageId, timerMarques)
     {
         this.tabImages = tabImages;
-        this.tabImageId = document.getElementById(marquesSliderImageId);
+        this.tagImageId = document.getElementById(marquesSliderImageId);
         this.timerId = document.getElementById(timerMarques);
 
         this.intervalId = null;
@@ -24,5 +24,21 @@ class marquesSlider{
         }
         // Inverse la valeur de l'état du chrono
         this.demarre = !this.demarre;
+    }
+
+    //function suivant
+    next() {
+        this.compteur++;
+        if (this.compteur === this.tabImages.length) {
+            this.compteur = 0;
+        }
+        this.tagImageId.src = this.tabImages[this.compteur];
+        // this.tagTexteId.textContent = this.tabTextes[this.compteur];
+        
+        clearInterval(this.intervalId);// Arrêt du slide auto
+
+        if (this.demarre) {
+            this.intervalId = setInterval( () => this.next(), 5000);//permet de démarrer la lecture auto
+        }
     }
 }

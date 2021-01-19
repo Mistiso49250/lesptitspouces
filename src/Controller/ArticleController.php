@@ -26,7 +26,7 @@ class ArticleController extends AbstractController
     // public function article(string $slug): Response
     {
         $article = $this->articleManager->Article($id);
-        return $this->render('frontoffice/article.html.twig', [
+        return $this->render('frontoffice/article/article.html.twig', [
             'article'=>$article,
         ]);
     }

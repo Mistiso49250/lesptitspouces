@@ -58,7 +58,7 @@ a{
 #circleLeft
 {
     position: absolute;
-    top: 34%;
+    top: 43%;
     left: 2%;
     z-index: 15;
     font-size: 27px;
@@ -67,8 +67,8 @@ a{
 #circleRight
 {
     position: absolute;
-    top: 34%;
-    right: 8%;
+    top: 43%;
+    right: 5%;
     z-index: 15;
     font-size: 27px;
 }
@@ -81,6 +81,8 @@ a{
     right: 0;
     left: 0;
     height: auto;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 
 header img
@@ -189,9 +191,27 @@ header p
     margin-bottom: 5%;
 }
 
+/* Menu description article */
 
+#myTab
+{
+    margin-bottom: 1rem !important;
+}
+
+.nav-tabs .nav-link.active
+{
+    color: #6351ce !important;
+}
+
+.nav-item a
+{
+    color: inherit !important;
+}
 @media only screen and (min-width: 601px){
-  
+    #circleRight
+    {
+        right: 3%;
+    }
 }
 @media only screen and (min-width: 760px){
    

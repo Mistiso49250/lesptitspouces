@@ -24,6 +24,16 @@ final class UserRepository
         return implode(' and ', $binding);
     }
 
+    private function insertUser(array $user)
+    {
+        $create = [];
+        foreach (array_keys($user) as $key) {
+            $create[] = "{$key} = :{$key}";
+        }
+    
+        return implode(' and ', $create);
+    }
+
     public function __construct(DbConnect $dbConnect)
     {
         $this->db = $dbConnect->connectToDb();
@@ -49,9 +59,19 @@ final class UserRepository
         return null;
     }
 
-    public function create(array $article): bool
+    public function create(array $user): bool
     {
-        return false ;
+        $create = $this->insertUser($user);
+        $options = [
+            'cost' => 12,
+        ];
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT, $options);
+        $token = $this->fonction->str_random(60);
+        $req = $this->db->prepare("INSERT into client {$create}");
+
+        $newUser = $req->execute($user);
+
+        return $newUser;
     }
 
     public function update(array $article): bool

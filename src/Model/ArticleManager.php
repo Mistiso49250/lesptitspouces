@@ -29,7 +29,7 @@ class ArticleManager
     public function create()
     {
         return $this->articleRepository->create(['titre'=>':titre', 'contenu_article'=>':contenu_article',
-                     'extrait'=>':extrait', 'prixTTC'=>':prixTTC', 'slug'=>':slug', 'newarticle'=>1]);
+                     'extrait'=>':extrait', 'detail'=>'', 'prixTTC'=>':prixTTC', 'slug'=>':slug', 'newarticle'=>1]);
     }
 
     public function uniqImg()
@@ -43,7 +43,7 @@ class ArticleManager
     public function update()
     {
         return $this->articleRepository->update(['titre'=>':titre', 'contenu_article'=>':contenu_article',
-        'extrait'=>':extrait', 'prixTTC'=>':prixTTC', 'slug'=>':slug', 'newarticle'=>1]);
+        'extrait'=>':extrait', 'detail'=>'', 'prixTTC'=>':prixTTC', 'slug'=>':slug', 'newarticle'=>1]);
     }
 
     public function delete()
