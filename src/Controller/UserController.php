@@ -65,6 +65,7 @@ class UserController extends AbstractController
             'messageError' => 'toto'
         ]);
     }
+    
 
     /**
      * @Route("/register", name="register")
@@ -79,6 +80,9 @@ class UserController extends AbstractController
                 !preg_match('/^[a-zA-Zéèàï0-9._]+$/', $request->request->get('username'))
             ) {
                 $this->addFlash('error', 'Tout les champs ne sont pas remplis');
+            } else {
+                $this->request->request->getAll();
+                $userManager = $this->user->register($data);
             }
             // else {
             // $user = $this->userManager->validation($request->request->get('username'));

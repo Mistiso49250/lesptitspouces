@@ -61,6 +61,7 @@ class ComposerStaticInit44b7e65a15b5fdb931e3ee7725de65d6
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\Config\\' => 25,
             'Symfony\\Component\\Cache\\' => 24,
+            'Symfony\\Component\\Asset\\' => 24,
             'Symfony\\Bundle\\WebProfilerBundle\\' => 33,
             'Symfony\\Bundle\\TwigBundle\\' => 26,
             'Symfony\\Bundle\\FrameworkBundle\\' => 31,
@@ -219,6 +220,10 @@ class ComposerStaticInit44b7e65a15b5fdb931e3ee7725de65d6
         array (
             0 => __DIR__ . '/..' . '/symfony/cache',
         ),
+        'Symfony\\Component\\Asset\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/asset',
+        ),
         'Symfony\\Bundle\\WebProfilerBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/web-profiler-bundle',
@@ -279,6 +284,7 @@ class ComposerStaticInit44b7e65a15b5fdb931e3ee7725de65d6
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
+        'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'JsonException' => __DIR__ . '/..' . '/symfony/polyfill-php73/Resources/stubs/JsonException.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'PhpCsFixer\\Diff\\GeckoPackages\\DiffOutputBuilder\\ConfigurationException' => __DIR__ . '/..' . '/php-cs-fixer/diff/src/GeckoPackages/DiffOutputBuilder/ConfigurationException.php',

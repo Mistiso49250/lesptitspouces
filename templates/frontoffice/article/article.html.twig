@@ -5,18 +5,16 @@
 {% endblock %}
 
 {% block content %}
-
+{# {{ asset (images/{{ article.image }}) }} #}
 	<div class="container-fluid row mb-4">
-		<img src="images/{{ article.image }}" alt="" class="img-fluid">
+		<img src="" alt="" class="img-fluid">
 		<div class="infoProduit">
 			<div class="titreArticle">
 				<h2>{{ article.titre }}</h2>
 				{{ article.extrait }}
 			</div>
 			<div class="prixArticle">
-				<span class="prix">{{ article.prixTTC }}
-					€</span>
-				<p>TTC</p>
+				<span class="prix">{{ article.prixTTC }} €</span>
 			</div>
 			{# <div class="action">
 			     {{ article.stock }} 

@@ -37,6 +37,6 @@ faire le userRepository :
 terminer les find dans l'articleRepository : ok
 gerer les limit dans le findBy dans l'articleRepository : 
 ranger les templates dans des dossiers correspondant : ok
-finir la homePage et article : 
-creer un article dont le prix est 9,99 et doit bien afficher le prix : 
+finir la homePage et article : presque ok
+creer un article dont le prix est 9,99 et doit bien afficher le prix : ok
 

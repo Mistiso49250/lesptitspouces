@@ -62,11 +62,6 @@ final class UserRepository
     public function create(array $user): bool
     {
         $create = $this->insertUser($user);
-        $options = [
-            'cost' => 12,
-        ];
-        $passwordHash = password_hash($password, PASSWORD_BCRYPT, $options);
-        $token = $this->fonction->str_random(60);
         $req = $this->db->prepare("INSERT into client {$create}");
 
         $newUser = $req->execute($user);

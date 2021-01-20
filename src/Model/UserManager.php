@@ -44,8 +44,16 @@ class UserManager
 
     public function register()
     {
+        $options = [
+            'cost' => 12,
+        ];
+        $passwordHash = password_hash($password, PASSWORD_BCRYPT, $options);
+        $data['password'] = $passwordHash;
+        $this->userRepository->create($data);
+        
+        $token = $this->fonction->str_random(60);
         return $this->userRepository->create(['username'=>'', 'name'=>'', 'société'=>'', 'email'=>'', 'adresse'=>'',
-                        'adress_supp'=>'', 'postal'=>'', 'ville'=>'', 'pays'=>'', 'phone'=>'', 'password'=>'', 
+                        'adress_supp'=>'', 'postal'=>'', 'ville'=>'', 'pays'=>'', 'phone'=>'', 'password'=>'',
                         'passwordConfirm'=>'']);
     }
 
