@@ -22,6 +22,12 @@ a{
     color: #007bff !important;
 }
 
+/* homePage */
+.homeHeader
+{
+    margin: 4rem 0 4rem 0;
+}
+
 /* Slider */
 #play
 {
@@ -105,17 +111,49 @@ header p
     background-color: rgba(1, 106, 176, 0.548);
 }
 
+/* aide cadeaux */
+#aideCadeaux{
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 8%;
+    border: solid #f8f9fa;
+    border-width: .2rem 0 0;
+}
+
+#cadeauBox{
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: .25rem;
+}
+
+.card-img-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1.25rem;
+    border-radius: calc(.25rem - 1px);
+}
+
+.card-img{
+    width: 100%;
+    height: 270px;
+}
+
 /* Card */
 .card {
     font-weight: 400;
     border: 0;
     -webkit-box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
-}
-
-.cardImgCadeau{
-    vertical-align: middle;
-    border-style: none;
 }
 
 .cardBlock{
@@ -148,8 +186,12 @@ header p
     display: block;
 }
 
-.navbar .mega-dropdown .dropdown-menu.mega-menu.v-2 .sub-menu ul li a {
-    color: #fff;
+.navbar.navbar-dark .navbar-nav .nav-item .nav-link {
+    color: #fff !important;
+}
+
+.navbar .dropdown-menu a:not(.active) {
+    color: #fff !important;
 }
 
 .special-color {
@@ -201,11 +243,45 @@ header p
 .nav-tabs .nav-link.active
 {
     color: #6351ce !important;
+    font-weight: bold;
 }
 
 .nav-item a
 {
     color: inherit !important;
+}
+
+/* page article */
+
+.boxArticle
+{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.visuel
+{
+    position: relative;
+    max-width: 50%;
+    padding-right: 30px;
+    padding-bottom: 5rem;
+}
+
+.infoProduit
+{
+    position: relative;
+    max-width: 50%;
+    padding-left: 30px;
+    margin-top: 4rem;
+}
+
+.prixArticle
+{
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #6351ce;
+    margin-left: 70%;
+    padding: 1rem;
 }
 
 @media only screen and (min-width: 601px){

@@ -44,10 +44,18 @@ final class ArticleRepository
         return implode(' and ', $update);
     }
 
+    private function limit(int $limit , int $offset, int $nbPerPage)
+    {
+        // $req->bindValue(':limitation', $nbPerPage, \PDO::PARAM_INT);
+        // $req->bindValue(':offset', $offset, \PDO::PARAM_INT);
+    }
+
+
     public function __construct(DbConnect $dbConnect)
     {
         $this->db = $dbConnect->connectToDb();
     }
+
 
     public function find(int $id): ?array
     {
@@ -62,11 +70,14 @@ final class ArticleRepository
     {
         return null;
     }
-
+    
     public function findBy(array $criteria, int $limit = null, int $offset = null): ?array
     {
+        // $limit = $this->limit($limit , $offset, $nbPerPage);
         $binding = $this->makeBinding($criteria);
-        $req = $this->db->prepare("SELECT * FROM article where {$binding}");
+        $req = $this->db->prepare("SELECT * FROM article where {$binding} {$limit}");// limit :offset, :limitation
+        // $req->bindValue(':limitation', $nbPerPage, \PDO::PARAM_INT);
+        // $req->bindValue(':offset', $offset, \PDO::PARAM_INT);
         $req->execute($criteria);
 
         return $req->fetchAll();

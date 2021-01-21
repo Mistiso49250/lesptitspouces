@@ -41,12 +41,13 @@
 			<div class="col-md-3 mb-4">
 				<div class="card text-center h-100" style="width: 15rem;">
 					<a href="{{ path('article', {'id': article.id_article}) }} ">
-						<img src="images/{{ article.image }}" alt="" class="cardImgTop"></a>
+						<img src="{{ asset ('images/' ~ article.image) }}" alt="" class="cardImgTop"></a>
 					<div class="cardBlock">
 						<h4 class="cardTitle">{{ article.titre }}
 						</h4>
 						<p class="cardArticleText">{{ article.extrait | nl2br }}</p>
-						<p class="cardPrice">{{ article.prixTTC }} €</p>
+						<p class="cardPrice">{{ article.prixTTC }}
+							€</p>
 						<a class="btn btn-info btn-rouded mb-4" href="">Ajouter au panier</a>
 					</div>
 				</div>
@@ -55,15 +56,24 @@
 	</div>
 
 
-	<section class="container-fluid row mb-4">
-		<div class="col-lg-offset-3 col-lg-6">
-			<div class="card">
-				<div class="cardBlock">
-					<h4 class="cardTitle">Besoin d'aide pour un cadeau ?</h4>
-					<div class="cardImg">
-						<a href="index.php?action=aide"><img src="images/aideCadeau.jpg" class="cardImgCadeau" alt="aide cadeau"></a>
+	{# <section class="container-fluid d-flex justify-content-center mb-4" id="aideCadeaux">
+			<div class="col-lg-offset-3 col-lg-9" id="cadeauBox" >
+				<div class="card" id="cadeauCard">
+					<div class="cardBlock">
+						<h4 class="cardTitle d-flex justify-content-center">Besoin d'aide pour un cadeau ?</h4>
+						<div class="cardImg d-flex justify-content-center">
+							<a href="index.php?action=aide"><img src="{{ asset ('images/aideCadeau.jpg') }}" class="cardImgCadeau" alt="aide cadeau"></a>
+						</div>
 					</div>
 				</div>
+			</div>
+		</section> #}
+
+	<section class="container-fluid d-flex justify-content-center" id="aideCadeaux">
+		<div class="text-white col-lg-offset-3 col-lg-9" id="cadeauBox">
+			<img src="{{ asset ('images/aideCadeau.jpg') }}" class="card-img" alt="...">
+			<div class="card-img-overlay">
+				<h4 class="card-title d-flex justify-content-center">Besoin d'aide pour un cadeau ?</h4>
 			</div>
 		</div>
 	</section>

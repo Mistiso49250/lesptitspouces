@@ -5,22 +5,25 @@
 {% endblock %}
 
 {% block content %}
-{# {{ asset (images/{{ article.image }}) }} #}
-	<div class="container-fluid row mb-4">
-		<img src="" alt="" class="img-fluid">
+
+	<div class="boxArticle">
+		<div class="visuel">
+			<img src="{{ asset ('images/' ~ article.image) }}" alt="" class="img-fluid">
+		</div>
 		<div class="infoProduit">
 			<div class="titreArticle">
 				<h2>{{ article.titre }}</h2>
 				{{ article.extrait }}
 			</div>
 			<div class="prixArticle">
-				<span class="prix">{{ article.prixTTC }} €</span>
+				<span class="prix justify-content-right">{{ article.prixTTC }}
+					€</span>
 			</div>
 			{# <div class="action">
-			     {{ article.stock }} 
-			     {{ article.quantité }} 
-			    <button type="submit" title="ajouter au panier"></button>
-			</div> #}
+						     {{ article.stock }} 
+						     {{ article.quantité }} 
+						    <button type="submit" title="ajouter au panier"></button>
+						</div> #}
 		</div>
 	</div>
 
@@ -37,10 +40,10 @@
 		</ul>
 
 		<!-- Tab panes -->
-        <div class="tab-content">
-            <div class="tab-pane active" id="description" role="tabpanel" aria-labelledby="description-tab">{{ article.contenu_article | nl2br }}</div>
-            <div class="tab-pane" id="detail" role="tabpanel" aria-labelledby="detail-tab">{{ article.detail | nl2br }}</div>
-        </div>
+		<div class="tab-content">
+			<div class="tab-pane active" id="description" role="tabpanel" aria-labelledby="description-tab">{{ article.contenu_article | nl2br }}</div>
+			<div class="tab-pane" id="detail" role="tabpanel" aria-labelledby="detail-tab">{{ article.detail | nl2br }}</div>
+		</div>
 
 	</div>
 

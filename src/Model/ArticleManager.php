@@ -32,6 +32,16 @@ class ArticleManager
                      'extrait'=>':extrait', 'detail'=>'', 'prixTTC'=>':prixTTC', 'slug'=>':slug', 'newarticle'=>1]);
     }
 
+    //calcul le nombre d' article
+    public function countArticle()
+    {
+        $req = $this->db->prepare('SELECT count(*) as total from article');
+        $req->execute();
+        $total = $req->fetch();
+        
+        return (int)$total['total'];
+    }
+
     public function uniqImg()
     {
         $req = $this->db->prepare('INSERT into chapitre (dateImg) values (now())');

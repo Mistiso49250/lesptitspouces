@@ -33,10 +33,10 @@ $request->files->get('foo'); // $_FILES
 
 4
 Modifier les tables dans heidi : ok
-faire le userRepository : 
+faire le userRepository : en cours
 terminer les find dans l'articleRepository : ok
 gerer les limit dans le findBy dans l'articleRepository : 
 ranger les templates dans des dossiers correspondant : ok
-finir la homePage et article : presque ok
+finir la homePage et article : ok
 creer un article dont le prix est 9,99 et doit bien afficher le prix : ok
 
